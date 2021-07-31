@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak/app/src/main/res/drawable/ic_cookie_full.xml" value="0.4" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak/app/src/main/res/drawable/ic_test1.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak/app/src/main/res/drawable/ic_test2.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/drawable/cirlcepractice.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/drawable/ic_cookie-5_background.xml" value="0.1" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/drawable/ic_cookie_8.xml" value="0.1" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/mipmap-anydpi-v26/ic_cookie-5.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

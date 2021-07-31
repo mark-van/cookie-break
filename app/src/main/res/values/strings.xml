@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cookie Break</string>
+    <string name="cookie_text"></string>
+    <string name="cookie_question">Cookie!</string>
+    <string name="for_me">For me?</string>
+    <string name="image_of_cookie_desc">Image of suggested cookie portion</string>
+</resources>
