@@ -4,4 +4,24 @@
     <string name="cookie_question">Cookie!</string>
     <string name="for_me">For me?</string>
     <string name="image_of_cookie_desc">Image of suggested cookie portion</string>
+    <string name="eat">Eat</string>
+    <string name="don_t_eat">Don\'t Eat</string>
+    <string name="button_to_history">Go to history</string>
+    <string name="go_to_history">Go to history</string>
+    <string name="eanten_cookie1">3</string>
+    <string name="eanten_cookie1_date">Wednesday MM-dd-yyyy Time: HH:mm</string>
+    <string name="eanten_cookie2">7</string>
+    <string name="eanten_cookie2_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
+    <string name="eanten_cookie3">2</string>
+    <string name="eanten_cookie3_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
+    <string name="eanten_cookie4">5</string>
+    <string name="eanten_cookie4_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
+    <string name="eanten_cookie5">6</string>
+    <string name="eanten_cookie5_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
+    <string name="eanten_cookie6">1</string>
+    <string name="eanten_cookie6_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
+    <string name="select">Select</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all">Delete All</string>
+    <string name="unselect">unselect</string>
 </resources>

@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="silverware">#B8B8BF</color>
+    <color name="selected_blue">#ff33b5e5</color>
+    <color name="selected_red">#ffff4444</color>
 </resources>

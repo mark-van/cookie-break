@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookieBreak">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="true"
+            android:parentActivityName="com.example.cookiebreak.MainActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
