@@ -15,4 +15,23 @@
         <item name="android:background">@color/design_default_color_on_primary</item>
         <item name="android:fontFamily">@font/bungee</item>
     </style>
+
+    <style name="dialog_theme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Neutral</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
+    </style>
+
+    <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="rippleColor">@color/design_default_color_primary_dark</item>
+        <item name="android:textColor">@color/selected_red</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Alert.Button.Neutral" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="rippleColor">@color/silverware</item>
+        <item name="android:textColor">@color/selected_blue</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

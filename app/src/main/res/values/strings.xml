@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Cookie Break</string>
+    <string name="cookie_select_fragment_label">Cookie Selector</string>
+    <string name="cookie_history_fragment_label">Cookie History</string>
     <string name="cookie_text"></string>
     <string name="cookie_question">Cookie!</string>
     <string name="for_me">For me?</string>
@@ -24,4 +26,10 @@
     <string name="delete">Delete</string>
     <string name="delete_all">Delete All</string>
     <string name="unselect">unselect</string>
+    <string name="delete_all_check">Delete Entire History?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="delete_all_check_message">Are you sure you wish to permanently delete all eaten cookie history?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
