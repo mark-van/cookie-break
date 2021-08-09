@@ -16,6 +16,7 @@ import com.example.cookiebreak.databinding.FragmentCookieSelectBinding
 import com.example.cookiebreak.model.CookieBreakModel
 import com.example.cookiebreak.model.EatenCookiesModel
 import com.example.cookiebreak.model.EatenCookiesModelFactory
+import com.google.android.material.transition.MaterialElevationScale
 import java.util.*
 
 
@@ -91,6 +92,15 @@ class CookieSelectFragment : Fragment() {
             //  val intent = Intent(this, HistoryActivity::class.java)
             //startService(intent);
             // startActivity(intent);
+            //causes this fragment to grow/shrink during the transition
+            this?.apply {
+                exitTransition = MaterialElevationScale(false).apply {
+                    duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+                }
+                reenterTransition = MaterialElevationScale(true).apply {
+                    duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+                }
+            }
             val action = CookieSelectFragmentDirections.actionCookieSelectFragmentToCookieHistoryFragment()
             view.findNavController().navigate(action)
         }

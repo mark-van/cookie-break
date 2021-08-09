@@ -15,6 +15,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Slide
 import com.example.cookiebreak.adapter.ItemAdapter
 import com.example.cookiebreak.database.CookieBreakApplication
 import com.example.cookiebreak.database.History
@@ -24,6 +25,7 @@ import com.example.cookiebreak.model.EatenCookiesModelFactory
 import com.example.cookiebreak.model.posIdPair
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.MaterialContainerTransform
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -156,6 +158,21 @@ class CookieHistoryFragment : Fragment() {
         (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
         binding.recycleView.addItemDecoration(
             DividerItemDecorationLastExcluded(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!))
+        enterTransition = MaterialContainerTransform().apply {
+            startView = requireActivity().findViewById(R.id.fab)
+            endView = binding.historyLayout
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+            scrimColor = Color.TRANSPARENT //Color.argb(67,170,68,0)
+                //ResourcesCompat.getColor(getResources(), R.color.dark_brown, null)
+            containerColor = Color.TRANSPARENT
+            startContainerColor = ResourcesCompat.getColor(getResources(), R.color.dark_brown, null)
+            endContainerColor = ResourcesCompat.getColor(getResources(), R.color.background_brown, null)
+
+        }
+        returnTransition = Slide().apply {
+            duration = resources.getInteger(R.integer.reply_motion_duration_medium).toLong()
+            addTarget(R.id.history_layout)
+        }
 
 //        binding.recycleView.addItemDecoration(
 //            DividerItemDecorator(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)

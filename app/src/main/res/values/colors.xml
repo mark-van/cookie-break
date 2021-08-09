@@ -12,4 +12,5 @@
     <color name="selected_red">#ffff4444</color>
     <color name="background_brown">#dda15e</color>
     <color name="dark_brown">#AA4400</color>
+    <color name="grey_scrim">#e9ecef</color>
 </resources>

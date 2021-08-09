@@ -11,7 +11,8 @@
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/history_layout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
