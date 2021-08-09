@@ -15,7 +15,7 @@ data class History(
     //@NonNull annotation since we don't want the column to be null
     @NonNull
     @ColumnInfo(name = "cookie_portion") val cookiePortion: Int,
-    @NonNull @ColumnInfo(name = "cookie_time") val cookieTime: Int
+    @NonNull @ColumnInfo(name = "cookie_time") val cookieTime: Long = System.currentTimeMillis()
 )
 // but for date
 //fun Item.getFormattedPrice(): String =

@@ -30,8 +30,8 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="20dp"
-            android:background="@color/dark_brown"
+            android:paddingVertical="10dp"
+            android:background="#AA4400"
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">

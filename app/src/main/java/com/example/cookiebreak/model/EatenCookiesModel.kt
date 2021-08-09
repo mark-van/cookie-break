@@ -5,30 +5,27 @@ import com.example.cookiebreak.database.History
 import com.example.cookiebreak.database.HistoryDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import androidx.lifecycle.asLiveData
+import java.text.SimpleDateFormat
 
 //viewmodel for history activity
 
-private var _selected = MutableLiveData<Boolean>(false)
 //for data persistance
-
-private val _selectList = MutableLiveData<MutableList<Int>>(mutableListOf<Int>())
-//only make the het public to all
-val selected: LiveData<Boolean> = _selected
-
-val selectList: LiveData<MutableList<Int>> = _selectList
 
 class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
 
+    var randomInt: Int = 0
+
+    var buttons: Int = 0
+
+    // Cache all items form the database using LiveData.
+    val allItems: LiveData<List<History>> = fullHistory().asLiveData()
+
     //can only me set by the activity instantiating EatenCookiesModel
-    var selecting: Boolean = false
-        set(bool){
-            _selected.value=bool
-            field = bool
-        }
-    var selectingList: MutableList<Int> = mutableListOf<Int>()
-        init{
-            _selectList.value=selectingList
-        }
+    var select = MutableLiveData<Boolean>(false)
+
+    var selectList = MutableLiveData<MutableList<posIdPair>>(mutableListOf<posIdPair>())
+
 
     fun fullHistory(): Flow<List<History>> = historyDao.getAll()
 
@@ -37,9 +34,19 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
             historyDao.insert(history)
         }
     }
+    fun deleteAll(){
+        viewModelScope.launch {
+            historyDao.deleteAll()
+        }
+    }
+    fun deleteHistory(id: Int){
+        viewModelScope.launch {
+            historyDao.deleteHistory(id)
+        }
+    }
 
-    fun addNewItem(cookiePortion: Int, cookieTime: Int) {
-        val newItem = getNewItemEntry(cookiePortion, cookieTime)
+    fun addNewItem(cookiePortion: Int) {
+        val newItem = getNewItemEntry(cookiePortion)
         insertHistory(newItem)
     }
 //    fun isEntryValid(cookiePortion: Int, cookieTime: Int): Boolean {
@@ -49,10 +56,9 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
 //        return true
 //    }
 
-    private fun getNewItemEntry(cookiePortion: Int, cookieTime: Int): History {
+    private fun getNewItemEntry(cookiePortion: Int): History {
         return History(
-            cookiePortion = cookiePortion,
-            cookieTime = cookieTime
+            cookiePortion = cookiePortion
         )
     }
 
@@ -64,7 +70,9 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
 //    var deleteButton: Boolean = false
 //    var deleteAllButton: Boolean = true
 
+
 }
+
 
 class EatenCookiesModelFactory(private val historyDao: HistoryDao): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -76,3 +84,11 @@ class EatenCookiesModelFactory(private val historyDao: HistoryDao): ViewModelPro
     }
 
 }
+
+class posIdPair(val pos:Int, val id:Int)
+//
+//class myList(override val size: Int) : MutableList<posIdPair>{
+//    fun contains(pos: Int): Boolean {
+//        return true
+//    }
+

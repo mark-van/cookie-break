@@ -1,5 +1,6 @@
 package com.example.cookiebreak
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.coroutineScope
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookiebreak.adapter.ItemAdapter
 import com.example.cookiebreak.database.CookieBreakApplication
@@ -16,8 +20,12 @@ import com.example.cookiebreak.database.History
 import com.example.cookiebreak.databinding.FragmentCookieHistoryBinding
 import com.example.cookiebreak.model.EatenCookiesModel
 import com.example.cookiebreak.model.EatenCookiesModelFactory
+import com.example.cookiebreak.model.posIdPair
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 
 //lateinit var history: History
@@ -39,50 +47,86 @@ class CookieHistoryFragment : Fragment() {
         )//diff?
     }
     private lateinit var adapter: ItemAdapter
-    private lateinit var recyclerView: RecyclerView
-
-    private fun itemClick(vh: ItemAdapter.ItemViewHolder){
-        if(historyViewModel.selecting==false) {
-            return
-        }
-        val pos  = vh.adapterPosition
-        val card: MaterialCardView = vh.itemView as MaterialCardView
-        //toggle entry from list
-        if(historyViewModel.selectingList.contains(pos)) {
-            historyViewModel.selectingList.remove(pos)
-            Log.d(TAG, historyViewModel.selectingList.toString())
-            card.setCardBackgroundColor(
-                ResourcesCompat.getColor(getResources(), R.color.selected_blue, null) )
-        }else {
-            Log.d(TAG, historyViewModel.selectingList.toString())
-            historyViewModel.selectingList.add(pos);
-            card.setCardBackgroundColor(
-                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
-        }
-        adapter.notifyDataSetChanged()
-        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
-        //vh.itemView.background.setTint(Color.BLUE)
-
-        //myDataset.removeAt(vh.adapterPosition)
-        //adapter.notifyDataSetChanged()
-        Log.d(TAG, "on recycel click ${pos}")
-    }
+    //private lateinit var recyclerView: RecyclerView
+//
+//    private fun itemClick(vh: ItemAdapter.ItemViewHolder){
+//        if(historyViewModel.select.value==false) {
+//            return
+//        }
+//        val pos  = vh.adapterPosition
+//        val card: MaterialCardView = vh.itemView as MaterialCardView
+//        //toggle entry from list
+//        if(historyViewModel.selectList.value?.contains(pos)!!) {
+//            historyViewModel.selectList.value?.remove(pos)
+//            Log.d(TAG, historyViewModel.selectList.toString())
+//            card.setCardBackgroundColor(
+//                ResourcesCompat.getColor(getResources(), R.color.selected_blue, null) )
+//        }else {
+//            Log.d(TAG, historyViewModel.selectList.toString())
+//            historyViewModel.selectList.value?.add(pos);
+//            card.setCardBackgroundColor(
+//                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
+//        }
+//        adapter.notifyDataSetChanged()
+//        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
+//        //vh.itemView.background.setTint(Color.BLUE)
+//
+//        //myDataset.removeAt(vh.adapterPosition)
+//        //adapter.notifyDataSetChanged()
+//        Log.d(TAG, "on recycel click ${pos}")
+//    }
     private fun itemLongClick(vh: ItemAdapter.ItemViewHolder){
-        if(historyViewModel.selecting==false)
-            return
-        val pos  = vh.adapterPosition
-        //myDataset.removeAt(vh.adapterPosition)
-        adapter.notifyDataSetChanged()
-        Log.d(TAG, "looooong")
+//        if(historyViewModel.select.value==false)
+//            return
+//        val pos  = vh.adapterPosition
+//        //myDataset.removeAt(vh.adapterPosition)
+//        adapter.notifyDataSetChanged()
+//        Log.d(TAG, "looooong")
     }
 
-    private fun onItemClicked(h: History){
+
+    private fun onItemClicked(vh: ItemAdapter.ItemViewHolder, h: History){
         Log.d(TAG, "clicked onItemClicked")
+//
+//        val pos  = vh.adapterPosition
+//        val card: MaterialCardView = vh.itemView as MaterialCardView
+//        //toggle entry from list
+//        var index =contains(pos)
+//        if(index != -1) {
+//            historyViewModel.selectList.value?.removeAt(index)
+//            Log.d(TAG, historyViewModel.selectList.toString())
+//            card.setCardBackgroundColor(
+//                ResourcesCompat.getColor(getResources(), R.color.selected_blue, null) )
+//        }else {
+//            Log.d(TAG, historyViewModel.selectList.toString())
+//            historyViewModel.selectList.value?.add(posIdPair(pos,h.id));
+//            card.setCardBackgroundColor(
+//                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
+//        }
+//        adapter.notifyDataSetChanged()
+//        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
+//        //vh.itemView.background.setTint(Color.BLUE)
+//
+//        //myDataset.removeAt(vh.adapterPosition)
+//        //adapter.notifyDataSetChanged()
+//        Log.d(TAG, "on recycel click ${pos}")
     }
-
+    //returns the elents index if in the list, otherwise -1
+    fun contains(pos: Int):Int{
+        var count = 0
+        while(historyViewModel.selectList.value?.size!!>0){
+            if(historyViewModel.selectList.value?.get(count)?.pos == pos)
+                return count
+        }
+        return -1
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //historyViewModel.allItems
         //list of data
+        //adapter.notifyDataSetChanged()
+        //run dtabse command to wake it up
+        //historyViewModel.allItems
 
     }
 
@@ -97,56 +141,82 @@ class CookieHistoryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.recycleView
-        setButtons()
+        super.onViewCreated(view, savedInstanceState)
+        //reverse order(have most recent on top)
+//        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
+//            LinearLayoutManager.VERTICAL, true)
+//        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
+        binding.recycleView.addItemDecoration(
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_row,null))}
+
+        )
+//        binding.recycleView.addItemDecoration(
+//            DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
+//                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_2,null))}
+//
+//        )
+        //R.drawable.ic_cookie_1
+        //setButtons()//??
         var count1 = 0
-        val cookieHistoryList = historyViewModel.fullHistory() //lsit of elemts of type History
+         //lsit of elemts of type History
 //        lifecycle.coroutineScope.launch {
 //            //called on every new value
 //            viewModel.fullHistory().collect {
 //                it -> Log.d(TAG, "fullHistory: ${it}")
 //            }
 //        }
-        historyViewModel.addNewItem(5,100)
-        historyViewModel.addNewItem(3,600)
-        historyViewModel.addNewItem(0,640)
-        historyViewModel.addNewItem(8,6000)
+//        historyViewModel.addNewItem(5,100)
+//        historyViewModel.addNewItem(3,600)
+//        historyViewModel.addNewItem(0,640)
+//        historyViewModel.addNewItem(8,6000)
 
-        adapter = ItemAdapter(::itemLongClick, ::onItemClicked)
-        recyclerView.adapter = adapter
+        adapter = ItemAdapter(::itemLongClick, ::onItemClicked, ::setEffects)
+        binding.recycleView.adapter = adapter
+//        lifecycle.coroutineScope.launch {
+//            historyViewModel.fullHistory().collect {
+//                adapter.submitList(it)
+//            }
+//        }
+        // Attach an observer on the allItems list to update the UI automatically when the data
+        // changes.
+        //much faster than above
+        historyViewModel.allItems.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+        }
         //only used to improve performance
-        recyclerView.setHasFixedSize(true)
+        //recyclerView.setHasFixedSize(true)
 
         //notify observers that data has changed
-        adapter.notifyDataSetChanged()
-
-        //setupTracker()
-        binding.selectButton.setOnClickListener {
-            Log.d(TAG, "selectbutton")
-            historyViewModel.selecting = !historyViewModel.selecting
-            if(historyViewModel.selecting)
-                historyViewModel.selectingList.clear()
-            adapter.notifyDataSetChanged()
-            setButtons()
-
-        }
-        binding.deleteButton.setOnClickListener {
-            var count = 0
-            historyViewModel.selectingList.sortDescending()
-            while(count < historyViewModel.selectingList.size){
-                //remove largest indexes from the dateset first so that the smaller indexes are not affected
-                Log.d(TAG, "viewModel.selectingList: ${historyViewModel.selectingList.get(count)}")
-                count++
-            }
-            while(!historyViewModel.selectingList.isEmpty()){
-                //remove largest indexes from the dateset first so that the smaller indexes are not affected
-                //myDataset.removeAt(viewModel.selectingList.removeFirst())
-            }
-            adapter.notifyDataSetChanged()
-        }
-        binding.deleteAllButton.setOnClickListener {
-            deleteAllVerificationDialog()
-        }
+        //adapter.notifyDataSetChanged()//??
+//
+//
+//        binding.selectButton.setOnClickListener {
+//            Log.d(TAG, "selectbutton")
+//            historyViewModel.select.value = !historyViewModel.select?.value!!
+//            if(historyViewModel.select.value!!)
+//                historyViewModel.selectList.value?.clear()
+//            adapter.notifyDataSetChanged()
+//            setButtons()
+//
+//        }
+//        binding.deleteButton.setOnClickListener {
+//            var count = 0
+//
+//            val size = historyViewModel.selectList.value?.size!!
+//            while(count < size){
+//                Log.d(TAG, "viewModel.selectList: ${historyViewModel.selectList.value?.get(count)}")
+//                count++
+//                historyViewModel.deleteHistory(historyViewModel.selectList.value?.removeLast()?.id!!)
+//            }
+//
+//            adapter.notifyDataSetChanged()
+//        }
+//        binding.deleteAllButton.setOnClickListener {
+//            deleteAllVerificationDialog()
+//        }
 
     }
     override fun onDestroyView() {
@@ -156,10 +226,8 @@ class CookieHistoryFragment : Fragment() {
 
 
     private fun deleteAll(){
-        //delete all data
-        //myDataset.clear()
-        historyViewModel.selectingList.clear()
-        adapter.notifyDataSetChanged()
+        Log.d(TAG, "deleteAll ${historyViewModel.selectList.value}")
+        historyViewModel.deleteAll()
     }
     private fun deleteAllVerificationDialog() {
         MaterialAlertDialogBuilder(requireContext(), R.style.dialog_theme)
@@ -174,20 +242,13 @@ class CookieHistoryFragment : Fragment() {
             }
             .show()
     }
-    fun View.isUserInteractionEnabled(enabled: Boolean) {
-        isEnabled = enabled
-        if (this is ViewGroup && this.childCount > 0) {
-            this.children.forEach {
-                it.isUserInteractionEnabled(enabled)
-            }
-        }
-    }
+
 
     private fun ontouch(): Boolean {
         return true
     }
     private fun setButtons() {
-        if(historyViewModel.selecting){
+        if(historyViewModel.select.value==true){
             binding.deleteButton.setEnabled(true)
             binding.deleteAllButton.setEnabled(false)
             //recyclerView.isClickable = true
@@ -201,5 +262,28 @@ class CookieHistoryFragment : Fragment() {
         }
 
     }
+
+    fun setEffects(vh: ItemAdapter.ItemViewHolder){
+//        if(historyViewModel.select.value == false){
+//            //not clickable, and no sound effects
+//            vh.itemView.isClickable = false
+//            vh.itemView.isSoundEffectsEnabled = false
+//        }
+//        else{
+//            vh.itemView.isClickable = true
+//            vh.itemView.isSoundEffectsEnabled = true
+//        }
+//        val card: MaterialCardView = vh.itemView as MaterialCardView
+//        if(historyViewModel.select.value==true){
+//            if(contains(vh.adapterPosition) != -1) {
+//                card.setCardBackgroundColor(Color.rgb(255,68,68))//red
+//            }else {
+//                card.setCardBackgroundColor(Color.rgb(51,181,229))//blue
+//            }
+//        }else{
+//            card.setCardBackgroundColor(Color.WHITE)
+//        }
+    }
+
 
 }

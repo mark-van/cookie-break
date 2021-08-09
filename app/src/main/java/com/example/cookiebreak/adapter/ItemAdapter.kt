@@ -1,31 +1,21 @@
 package com.example.cookiebreak.adapter
 
-import android.content.Context
-import android.graphics.Color
+
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.selection.ItemDetailsLookup
-import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cookiebreak.MainActivity
 import com.example.cookiebreak.CookieSelectFragment.Companion.TAG
 import com.example.cookiebreak.R
 import com.example.cookiebreak.database.History
 import com.example.cookiebreak.databinding.ListItemBinding
-import com.example.cookiebreak.model.EatenCookies
-import com.example.cookiebreak.model.selectList
-import com.example.cookiebreak.model.selected
-import com.google.android.material.card.MaterialCardView
+import java.text.SimpleDateFormat
 
 class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Unit,
-                   private val onItemClicked: (History) -> Unit)
+                   private val onItemClicked: (ItemAdapter.ItemViewHolder, History) -> Unit,
+                   private val setEffects: (ItemAdapter.ItemViewHolder) -> Unit)
     : ListAdapter<History, ItemAdapter.ItemViewHolder>(DiffCallback){
 
 
@@ -36,7 +26,7 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
         //??
         RecyclerView.ViewHolder(binding.root) {
         fun bind(history: History) {
-            binding.itemDate.text = history.cookieTime.toString()
+            binding.itemDate.text = convertLongToDateString(history.cookieTime)
             binding.itemPortion.text = when (history.cookiePortion) {
                 0 -> "no"
                 1 -> "1/8"
@@ -61,6 +51,11 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
             }
             binding.itemImage.setImageResource(drawableResource)
         }
+
+        fun convertLongToDateString(systemTime: Long): String {
+            return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
+                .format(systemTime).toString()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -82,44 +77,21 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
         return vh
     }
 
-    fun setEffects(vh: ItemAdapter.ItemViewHolder){
-        if(selected.equals(false)){
-            //not clickable, and no sound effects
-            vh.itemView.isClickable = false
-            vh.itemView.isSoundEffectsEnabled = false
-        }
-        else{
-            vh.itemView.isClickable = true
-            vh.itemView.isSoundEffectsEnabled = true
-        }
-    }
-
     //used to replace the contents of a list item view
     //holder:ItemViewHolder previously created by the onCreateViewHolder()
     //position: the current item position
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-        val card: MaterialCardView = holder.itemView as MaterialCardView
-        if(selected.equals(true)){
-            if(selectList.value?.contains(holder.adapterPosition) == true) {
-                Log.d(TAG, selectList.toString())
-                card.setCardBackgroundColor(Color.rgb(255,68,68))//red
-            }else {
-                Log.d(TAG, selectList.toString())
-                card.setCardBackgroundColor(Color.rgb(51,181,229))//blue
-            }
-        }else{
-            card.setCardBackgroundColor(Color.WHITE)
-        }
         val current = getItem(position)
         holder.bind(current)
         holder.itemView.setOnClickListener {
-            onItemClicked(current)
+            onItemClicked(holder, current)
         }
 
         Log.d(TAG, "onBindViewHolder ${holder.adapterPosition}")
         setEffects(holder)
     }
+
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<History>() {

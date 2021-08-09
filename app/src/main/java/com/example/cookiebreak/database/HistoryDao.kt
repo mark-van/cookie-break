@@ -13,6 +13,12 @@ interface  HistoryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(history: History)
 
+    @Query("delete from history where id = :id")
+    suspend fun deleteHistory(id: Int)
+
     @Delete
     suspend fun delete(history: History)
+
+    @Query("delete from history")
+    suspend fun deleteAll()
 }
