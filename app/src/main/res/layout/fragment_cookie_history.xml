@@ -19,9 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager"
-            app:stackFromEnd="true"
-            app:reverseLayout="true"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_above="@id/linearLayout"/>

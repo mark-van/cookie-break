@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
@@ -139,18 +140,28 @@ class CookieHistoryFragment : Fragment() {
         val view = binding.root
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //reverse order(have most recent on top)
 //        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
 //            LinearLayoutManager.VERTICAL, true)
 //        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
+//        binding.recycleView.addItemDecoration(
+//            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+//                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_row,null))}
+//
+//        )
+        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
+            LinearLayoutManager.VERTICAL, true)
+        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
         binding.recycleView.addItemDecoration(
-            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_row,null))}
+            DividerItemDecorationLastExcluded(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!))
 
-        )
+//        binding.recycleView.addItemDecoration(
+//            DividerItemDecorator(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)
+//        ))
+
+
 //        binding.recycleView.addItemDecoration(
 //            DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
 //                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_2,null))}
