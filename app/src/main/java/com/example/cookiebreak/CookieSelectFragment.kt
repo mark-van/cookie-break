@@ -1,5 +1,6 @@
 package com.example.cookiebreak
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -62,6 +63,13 @@ class CookieSelectFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         randomInt = viewModel.randomInt
         buttons = viewModel.buttons
+        val orientation = this.resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            binding.fab.shrink()
+        } else {
+            // code for landscape mode
+            binding.fab.extend()
+        }
 
         cookieShow(randomInt)
         setButtons()
@@ -104,6 +112,11 @@ class CookieSelectFragment : Fragment() {
             val action = CookieSelectFragmentDirections.actionCookieSelectFragmentToCookieHistoryFragment()
             view.findNavController().navigate(action)
         }
+//        binding.fab.setOnHoverListener { view, motionEvent ->
+//            binding.fab.extend()
+//            return@setOnHoverListener true
+//        }
+
     }
 
     private fun setButtons(){

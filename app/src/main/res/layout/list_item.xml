@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     app:rippleColor="@color/selected_red"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
     style="itemCardView">
     <LinearLayout

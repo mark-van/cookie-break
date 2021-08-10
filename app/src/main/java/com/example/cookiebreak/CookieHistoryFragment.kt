@@ -209,6 +209,7 @@ class CookieHistoryFragment : Fragment() {
             deleteAllVerificationDialog()
         }
 
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
