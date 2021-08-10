@@ -27,6 +27,33 @@
             android:layout_above="@id/linearLayout"/>
 
         <LinearLayout
+            android:id="@+id/no_items_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            tools:visibility="gone"
+            android:layout_above="@id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="@string/no_cookies_text"
+                android:layout_marginBottom="40dp"/>
+
+            <ImageView
+                android:id="@+id/cookie_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/cookie_jar"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_cookie_jar" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

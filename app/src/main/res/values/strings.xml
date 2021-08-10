@@ -32,4 +32,6 @@
     <string name="delete_all_check_message">Are you sure you wish to permanently delete all eaten cookie history?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_cookies_text">Have a cookie break!\n The cookies you eat will show up here.</string>
+    <string name="cookie_jar">cookie jar</string>
 </resources>

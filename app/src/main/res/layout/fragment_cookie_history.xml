@@ -12,10 +12,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/history_layout">
+        android:id="@+id/history_layout"
+        tools:background="@color/background_brown">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
+            tools:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -25,9 +27,40 @@
             android:layout_above="@id/linearLayout"/>
 
         <LinearLayout
+            android:id="@+id/no_items_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:visibility="visible"
+            android:layout_above="@id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:enabled="true"
+                android:text="@string/no_cookies_text"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/cookie_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/cookie_jar"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_cookie_jar" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:visibility="gone"
             android:paddingVertical="20dp"
             android:background="@color/dark_brown"
             android:gravity="center"

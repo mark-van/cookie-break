@@ -3,6 +3,7 @@ package com.example.cookiebreak
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,34 +51,7 @@ class CookieHistoryFragment : Fragment() {
         )//diff?
     }
     private lateinit var adapter: ItemAdapter
-    //private lateinit var recyclerView: RecyclerView
-//
-//    private fun itemClick(vh: ItemAdapter.ItemViewHolder){
-//        if(historyViewModel.select.value==false) {
-//            return
-//        }
-//        val pos  = vh.adapterPosition
-//        val card: MaterialCardView = vh.itemView as MaterialCardView
-//        //toggle entry from list
-//        if(historyViewModel.selectList.value?.contains(pos)!!) {
-//            historyViewModel.selectList.value?.remove(pos)
-//            Log.d(TAG, historyViewModel.selectList.toString())
-//            card.setCardBackgroundColor(
-//                ResourcesCompat.getColor(getResources(), R.color.selected_blue, null) )
-//        }else {
-//            Log.d(TAG, historyViewModel.selectList.toString())
-//            historyViewModel.selectList.value?.add(pos);
-//            card.setCardBackgroundColor(
-//                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
-//        }
-//        adapter.notifyDataSetChanged()
-//        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
-//        //vh.itemView.background.setTint(Color.BLUE)
-//
-//        //myDataset.removeAt(vh.adapterPosition)
-//        //adapter.notifyDataSetChanged()
-//        Log.d(TAG, "on recycel click ${pos}")
-//    }
+
     private fun itemLongClick(vh: ItemAdapter.ItemViewHolder){
 //        if(historyViewModel.select.value==false)
 //            return
@@ -90,28 +64,31 @@ class CookieHistoryFragment : Fragment() {
 
     private fun onItemClicked(vh: ItemAdapter.ItemViewHolder, h: History){
         Log.d(TAG, "clicked onItemClicked")
-//
-//        val pos  = vh.adapterPosition
-//        val card: MaterialCardView = vh.itemView as MaterialCardView
-//        //toggle entry from list
-//        var index =contains(pos)
-//        if(index != -1) {
-//            historyViewModel.selectList.value?.removeAt(index)
-//            Log.d(TAG, historyViewModel.selectList.toString())
-//            card.setCardBackgroundColor(
-//                ResourcesCompat.getColor(getResources(), R.color.selected_blue, null) )
-//        }else {
-//            Log.d(TAG, historyViewModel.selectList.toString())
-//            historyViewModel.selectList.value?.add(posIdPair(pos,h.id));
-//            card.setCardBackgroundColor(
-//                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
-//        }
-//        adapter.notifyDataSetChanged()
-//        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
-//        //vh.itemView.background.setTint(Color.BLUE)
-//
-//        //myDataset.removeAt(vh.adapterPosition)
-//        //adapter.notifyDataSetChanged()
+
+        val pos  = vh.adapterPosition
+        val card: MaterialCardView = vh.itemView as MaterialCardView
+        //toggle entry from list
+        var index =contains(pos)
+        if(index != -1) {
+            historyViewModel.selectList.value?.removeAt(index)
+            Log.d(TAG, historyViewModel.selectList.toString())
+            //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
+            //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
+            card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.selected_blue, null))
+        }else {
+            Log.d(TAG, historyViewModel.selectList.toString())
+            historyViewModel.selectList.value?.add(posIdPair(pos,h.id));
+            //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
+            //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
+            card.setCardBackgroundColor(
+                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
+        }
+        adapter.notifyDataSetChanged()
+        //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
+        //vh.itemView.background.setTint(Color.BLUE)
+
+        //myDataset.removeAt(vh.adapterPosition)
+        //adapter.notifyDataSetChanged()
 //        Log.d(TAG, "on recycel click ${pos}")
     }
     //returns the elents index if in the list, otherwise -1
@@ -125,11 +102,6 @@ class CookieHistoryFragment : Fragment() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //historyViewModel.allItems
-        //list of data
-        //adapter.notifyDataSetChanged()
-        //run dtabse command to wake it up
-        //historyViewModel.allItems
 
     }
 
@@ -145,14 +117,6 @@ class CookieHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //reverse order(have most recent on top)
-//        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
-//            LinearLayoutManager.VERTICAL, true)
-//        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
-//        binding.recycleView.addItemDecoration(
-//            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-//                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_row,null))}
-//
-//        )
         binding.recycleView.layoutManager = LinearLayoutManager(this.context,
             LinearLayoutManager.VERTICAL, true)
         (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
@@ -173,27 +137,6 @@ class CookieHistoryFragment : Fragment() {
             duration = resources.getInteger(R.integer.reply_motion_duration_medium).toLong()
             addTarget(R.id.history_layout)
         }
-
-//        binding.recycleView.addItemDecoration(
-//            DividerItemDecorator(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)
-//        ))
-
-
-//        binding.recycleView.addItemDecoration(
-//            DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
-//                .apply { setDrawable(getResources().getDrawable(R.drawable.ic_cookie_2,null))}
-//
-//        )
-        //R.drawable.ic_cookie_1
-        //setButtons()//??
-        var count1 = 0
-         //lsit of elemts of type History
-//        lifecycle.coroutineScope.launch {
-//            //called on every new value
-//            viewModel.fullHistory().collect {
-//                it -> Log.d(TAG, "fullHistory: ${it}")
-//            }
-//        }
 //        historyViewModel.addNewItem(5,100)
 //        historyViewModel.addNewItem(3,600)
 //        historyViewModel.addNewItem(0,640)
@@ -201,6 +144,16 @@ class CookieHistoryFragment : Fragment() {
 
         adapter = ItemAdapter(::itemLongClick, ::onItemClicked, ::setEffects)
         binding.recycleView.adapter = adapter
+
+        //if there are no items
+        if(adapter.itemCount==0){
+            binding.linearLayout.visibility = View.GONE
+            binding.noItemsLayout.visibility = View.VISIBLE
+            return
+        }else{
+            binding.linearLayout.visibility = View.VISIBLE
+            binding.noItemsLayout.visibility = View.GONE
+        }
 //        lifecycle.coroutineScope.launch {
 //            historyViewModel.fullHistory().collect {
 //                adapter.submitList(it)
@@ -219,32 +172,32 @@ class CookieHistoryFragment : Fragment() {
 
         //notify observers that data has changed
         //adapter.notifyDataSetChanged()//??
-//
-//
-//        binding.selectButton.setOnClickListener {
-//            Log.d(TAG, "selectbutton")
-//            historyViewModel.select.value = !historyViewModel.select?.value!!
-//            if(historyViewModel.select.value!!)
-//                historyViewModel.selectList.value?.clear()
-//            adapter.notifyDataSetChanged()
-//            setButtons()
-//
-//        }
-//        binding.deleteButton.setOnClickListener {
-//            var count = 0
-//
-//            val size = historyViewModel.selectList.value?.size!!
-//            while(count < size){
-//                Log.d(TAG, "viewModel.selectList: ${historyViewModel.selectList.value?.get(count)}")
-//                count++
-//                historyViewModel.deleteHistory(historyViewModel.selectList.value?.removeLast()?.id!!)
-//            }
-//
-//            adapter.notifyDataSetChanged()
-//        }
-//        binding.deleteAllButton.setOnClickListener {
-//            deleteAllVerificationDialog()
-//        }
+
+
+        binding.selectButton.setOnClickListener {
+            Log.d(TAG, "selectbutton")
+            historyViewModel.select.value = !historyViewModel.select?.value!!
+            if(historyViewModel.select.value!!)
+                historyViewModel.selectList.value?.clear()
+            adapter.notifyDataSetChanged()
+            setButtons()
+
+        }
+        binding.deleteButton.setOnClickListener {
+            var count = 0
+
+            val size = historyViewModel.selectList.value?.size!!
+            while(count < size){
+                Log.d(TAG, "viewModel.selectList: ${historyViewModel.selectList.value?.get(count)}")
+                count++
+                historyViewModel.deleteHistory(historyViewModel.selectList.value?.removeLast()?.id!!)
+            }
+
+            adapter.notifyDataSetChanged()
+        }
+        binding.deleteAllButton.setOnClickListener {
+            deleteAllVerificationDialog()
+        }
 
     }
     override fun onDestroyView() {
@@ -292,26 +245,37 @@ class CookieHistoryFragment : Fragment() {
     }
 
     fun setEffects(vh: ItemAdapter.ItemViewHolder){
-//        if(historyViewModel.select.value == false){
-//            //not clickable, and no sound effects
-//            vh.itemView.isClickable = false
-//            vh.itemView.isSoundEffectsEnabled = false
-//        }
-//        else{
-//            vh.itemView.isClickable = true
-//            vh.itemView.isSoundEffectsEnabled = true
-//        }
-//        val card: MaterialCardView = vh.itemView as MaterialCardView
-//        if(historyViewModel.select.value==true){
-//            if(contains(vh.adapterPosition) != -1) {
-//                card.setCardBackgroundColor(Color.rgb(255,68,68))//red
-//            }else {
-//                card.setCardBackgroundColor(Color.rgb(51,181,229))//blue
-//            }
-//        }else{
-//            card.setCardBackgroundColor(Color.WHITE)
-//        }
+        if(historyViewModel.select.value == false){
+            //not clickable, and no sound effects
+            vh.itemView.isClickable = false
+            vh.itemView.isSoundEffectsEnabled = false
+        }
+        else{
+            vh.itemView.isClickable = true
+            vh.itemView.isSoundEffectsEnabled = true
+        }
+        val card: MaterialCardView = vh.itemView as MaterialCardView
+        if(historyViewModel.select.value==true){
+            if(contains(vh.adapterPosition) != -1) {
+                card.setCardBackgroundColor(Color.rgb(255,68,68))//red
+               // card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
+                //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
+            }else {
+                card.setCardBackgroundColor(Color.rgb(51,181,229))//blue
+                //card.setCardBackgroundColor(Color.WHITE)
+                //card.strokeWidth = 50 //dipToPixels(10f).toInt() //getResources().getDimension(R.dimen.ten).toInt()
+                Log.d(TAG, "deleteAll ${card.strokeWidth}")
+                //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
+            }
+        }else{
+            card.setCardBackgroundColor(Color.WHITE)
+            //card.strokeWidth = 50  //dipToPixels(10f).toInt() //getResources().getDimension(R.dimen.ten).toInt()
+            Log.d(TAG, "deleteAll ${card.strokeWidth}")
+            //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.dark_brown, null)
+        }
     }
+    fun dipToPixels(dipValue: Float) =
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, resources.displayMetrics)
 
 
 }

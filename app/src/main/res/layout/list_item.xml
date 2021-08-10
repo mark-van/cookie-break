@@ -7,8 +7,6 @@
     app:cardCornerRadius="20dp"
     app:rippleColor="@color/selected_red"
     app:cardUseCompatPadding="true"
-    app:strokeColor="@color/dark_brown"
-    app:strokeWidth="10dp"
     style="itemCardView">
     <LinearLayout
         android:id="@+id/item_layout"
