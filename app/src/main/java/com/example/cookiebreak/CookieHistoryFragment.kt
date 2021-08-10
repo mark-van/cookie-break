@@ -145,15 +145,6 @@ class CookieHistoryFragment : Fragment() {
         adapter = ItemAdapter(::itemLongClick, ::onItemClicked, ::setEffects)
         binding.recycleView.adapter = adapter
 
-        //if there are no items
-        if(adapter.itemCount==0){
-            binding.linearLayout.visibility = View.GONE
-            binding.noItemsLayout.visibility = View.VISIBLE
-            return
-        }else{
-            binding.linearLayout.visibility = View.VISIBLE
-            binding.noItemsLayout.visibility = View.GONE
-        }
 //        lifecycle.coroutineScope.launch {
 //            historyViewModel.fullHistory().collect {
 //                adapter.submitList(it)
@@ -165,8 +156,18 @@ class CookieHistoryFragment : Fragment() {
         historyViewModel.allItems.observe(this.viewLifecycleOwner) { items ->
             items.let {
                 adapter.submitList(it)
+                //Log.d(TAG, "allItems.observe ${it.isEmpty()}")
+                //if there are no items
+                if(it.isEmpty()){
+                    binding.linearLayout.visibility = View.GONE
+                    binding.noItemsLayout.visibility = View.VISIBLE
+                }else{
+                    binding.linearLayout.visibility = View.VISIBLE
+                    binding.noItemsLayout.visibility = View.GONE
+                }
             }
         }
+
         //only used to improve performance
         //recyclerView.setHasFixedSize(true)
 
