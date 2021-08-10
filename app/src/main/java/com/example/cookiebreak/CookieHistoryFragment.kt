@@ -48,7 +48,7 @@ class CookieHistoryFragment : Fragment() {
     private val historyViewModel: EatenCookiesModel by activityViewModels{
         EatenCookiesModelFactory(
             (activity?.application as CookieBreakApplication).database.scheduleDao()
-        )//diff?
+        )
     }
     private lateinit var adapter: ItemAdapter
 
@@ -69,21 +69,22 @@ class CookieHistoryFragment : Fragment() {
         val card: MaterialCardView = vh.itemView as MaterialCardView
         //toggle entry from list
         var index =contains(pos)
+        Log.d(TAG, "clicked item pos ${pos}")
+        Log.d(TAG, "clicked item index in list ${index}")
         if(index != -1) {
-            historyViewModel.selectList.value?.removeAt(index)
+            historyViewModel.selectList.removeAt(index)
             Log.d(TAG, historyViewModel.selectList.toString())
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
             //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
             card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.selected_blue, null))
         }else {
             Log.d(TAG, historyViewModel.selectList.toString())
-            historyViewModel.selectList.value?.add(posIdPair(pos,h.id));
+            historyViewModel.selectList.add(posIdPair(pos,h.id));
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
             //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
             card.setCardBackgroundColor(
                 ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
         }
-        adapter.notifyDataSetChanged()
         //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
         //vh.itemView.background.setTint(Color.BLUE)
 
@@ -92,11 +93,19 @@ class CookieHistoryFragment : Fragment() {
 //        Log.d(TAG, "on recycel click ${pos}")
     }
     //returns the elents index if in the list, otherwise -1
+
+    fun printList(){
+        var count = 0
+        while(historyViewModel.selectList.size>0){
+        }
+    }
+
     fun contains(pos: Int):Int{
         var count = 0
-        while(historyViewModel.selectList.value?.size!!>0){
-            if(historyViewModel.selectList.value?.get(count)?.pos == pos)
+        while(historyViewModel.selectList.size>count){
+            if(historyViewModel.selectList.get(count).pos == pos)
                 return count
+            count++
         }
         return -1
     }
@@ -179,7 +188,7 @@ class CookieHistoryFragment : Fragment() {
             Log.d(TAG, "selectbutton")
             historyViewModel.select.value = !historyViewModel.select?.value!!
             if(historyViewModel.select.value!!)
-                historyViewModel.selectList.value?.clear()
+                historyViewModel.selectList.clear()
             adapter.notifyDataSetChanged()
             setButtons()
 
@@ -187,14 +196,14 @@ class CookieHistoryFragment : Fragment() {
         binding.deleteButton.setOnClickListener {
             var count = 0
 
-            val size = historyViewModel.selectList.value?.size!!
+            val size = historyViewModel.selectList.size!!
             while(count < size){
-                Log.d(TAG, "viewModel.selectList: ${historyViewModel.selectList.value?.get(count)}")
+                //Log.d(TAG, "viewModel.selectList: ${historyViewModel.selectList.get(count)}")
                 count++
-                historyViewModel.deleteHistory(historyViewModel.selectList.value?.removeLast()?.id!!)
+                historyViewModel.deleteHistory(historyViewModel.selectList.removeLast()?.id!!)
             }
 
-            adapter.notifyDataSetChanged()
+            //adapter.notifyDataSetChanged()
         }
         binding.deleteAllButton.setOnClickListener {
             deleteAllVerificationDialog()
@@ -208,7 +217,7 @@ class CookieHistoryFragment : Fragment() {
 
 
     private fun deleteAll(){
-        Log.d(TAG, "deleteAll ${historyViewModel.selectList.value}")
+        Log.d(TAG, "deleteAll ${historyViewModel.selectList}")
         historyViewModel.deleteAll()
     }
     private fun deleteAllVerificationDialog() {

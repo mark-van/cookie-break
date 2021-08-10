@@ -24,7 +24,7 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
     //can only me set by the activity instantiating EatenCookiesModel
     var select = MutableLiveData<Boolean>(false)
 
-    var selectList = MutableLiveData<MutableList<posIdPair>>(mutableListOf<posIdPair>())
+    var selectList = mutableListOf<posIdPair>()
 
 
     fun fullHistory(): Flow<List<History>> = historyDao.getAll()
