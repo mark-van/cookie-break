@@ -53,7 +53,7 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
         }
 
         fun convertLongToDateString(systemTime: Long): String {
-            return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
+            return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'hh:mm aa")
                 .format(systemTime).toString()
         }
     }

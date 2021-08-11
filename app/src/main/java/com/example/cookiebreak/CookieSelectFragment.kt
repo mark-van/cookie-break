@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -55,10 +56,10 @@ class CookieSelectFragment : Fragment() {
     ): View? {
         _binding = FragmentCookieSelectBinding.inflate(inflater, container, false)
         val view = binding.root
+        Log.d("hello", "ww3 ${binding.cookieEatButton.width}")
         return view
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         randomInt = viewModel.randomInt
@@ -70,7 +71,28 @@ class CookieSelectFragment : Fragment() {
             // code for landscape mode
             binding.fab.extend()
         }
+        //make button wihs equal
+        Log.d("hello", "ww ${binding.cookieEatButton.width}")
+        Log.d(TAG, "22 ${binding.cookieDontEatButton.width}")
+        //binding.cookieEatButton.width = binding.cookieEatButton.width
+        //binding.cookieDontEatButton.width = binding.cookieDontEatButton.width
 
+//        var listener = ViewTreeObserver.OnGlobalFocusChangeListener { view, view2 ->
+//            if(binding.cookieDontEatButton.width != 0){
+//                binding.cookieEatButton.width = binding.cookieDontEatButton.width
+//            }
+//        }
+//        var observer = binding.cookieDontEatButton.viewTreeObserver
+//        observer.addOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener {
+//
+//        })
+        binding.cookieDontEatButton.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
+            if(binding.cookieDontEatButton.width != 0){
+                binding.cookieEatButton.width = binding.cookieDontEatButton.width
+                //binding.cookieDontEatButton.removeOnLayoutChangeListener()
+                //binding.cookieDontEatButton.viewTreeObserver.removeOnGlobalLayoutListener()
+            }
+        }
         cookieShow(randomInt)
         setButtons()
 

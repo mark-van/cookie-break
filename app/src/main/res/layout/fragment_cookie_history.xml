@@ -12,19 +12,31 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_brown"
         android:id="@+id/history_layout"
         tools:background="@color/background_brown">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycle_view"
-            tools:visibility="gone"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:scrollbars="vertical"
+            android:id="@+id/snackbar_coordinatorLayout"
+            android:layout_above="@+id/no_items_layout"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:layout_above="@id/linearLayout"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                tools:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scrollbars="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/no_items_layout"/>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <LinearLayout
             android:id="@+id/no_items_layout"
@@ -61,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:visibility="gone"
-            android:paddingVertical="20dp"
+            android:paddingVertical="4dp"
             android:background="@color/dark_brown"
             android:gravity="center"
             android:orientation="horizontal"
@@ -72,24 +84,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="@string/select"
-                android:enabled="@{true}"/>
+                android:text="@string/select" />
 
             <Button
                 android:id="@+id/delete_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="@string/delete"
-                android:enabled="@{false}"
-                />
+                android:text="@string/delete" />
 
             <Button
                 android:id="@+id/delete_all_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/delete_all"
-                android:enabled="@{true}"/>
+                android:text="@string/delete_all" />
 
         </LinearLayout>
 

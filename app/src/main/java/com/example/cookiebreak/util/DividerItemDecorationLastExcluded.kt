@@ -1,4 +1,4 @@
-package com.example.cookiebreak
+package com.example.cookiebreak.util
 
 import android.graphics.Rect
 import android.graphics.drawable.Drawable

@@ -13,4 +13,7 @@
     <color name="background_brown">#dda15e</color>
     <color name="dark_brown">#AA4400</color>
     <color name="grey_scrim">#e9ecef</color>
+    <color name="dark_silver">#6c757d</color>
+    <color name="white_selectable">#e5e5e5</color>
+    <color name="light_black">#463f3a</color>
 </resources>

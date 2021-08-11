@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.cookiebreak.databinding.ActivityMainBinding
 import com.example.cookiebreak.model.CookieBreakModel
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().getDecorView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.background_brown, null));
+        //getWindow().getDecorView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.background_brown, null));
+        getWindow().getDecorView().background = ContextCompat.getDrawable(this,R.drawable.tiles_background)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

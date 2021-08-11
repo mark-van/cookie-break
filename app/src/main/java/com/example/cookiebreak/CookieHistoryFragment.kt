@@ -1,5 +1,6 @@
 package com.example.cookiebreak
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.coroutineScope
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Slide
@@ -24,12 +23,11 @@ import com.example.cookiebreak.databinding.FragmentCookieHistoryBinding
 import com.example.cookiebreak.model.EatenCookiesModel
 import com.example.cookiebreak.model.EatenCookiesModelFactory
 import com.example.cookiebreak.model.posIdPair
+import com.example.cookiebreak.util.DividerItemDecorationLastExcluded
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 
 
 //lateinit var history: History
@@ -76,7 +74,7 @@ class CookieHistoryFragment : Fragment() {
             Log.d(TAG, historyViewModel.selectList.toString())
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
             //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
-            card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.selected_blue, null))
+            card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white_selectable, null))
         }else {
             Log.d(TAG, historyViewModel.selectList.toString())
             historyViewModel.selectList.add(posIdPair(pos,h.id));
@@ -123,14 +121,36 @@ class CookieHistoryFragment : Fragment() {
         val view = binding.root
         return view
     }
+
+    fun manageLayout(){
+        val widthDp = resources.displayMetrics.run { widthPixels / density }
+        Log.d(TAG, "${widthDp}")
+        val orientation = this.resources.configuration.orientation
+        if ((widthDp>=600 && orientation == Configuration.ORIENTATION_PORTRAIT) || (widthDp>=900 && orientation == Configuration.ORIENTATION_LANDSCAPE)) {
+            binding.recycleView.layoutManager = GridLayoutManager(this.context, 2, RecyclerView.VERTICAL , false)
+        }else{
+            binding.recycleView.layoutManager = LinearLayoutManager(this.context,
+                LinearLayoutManager.VERTICAL, true)
+            (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
+            binding.recycleView.addItemDecoration(
+                DividerItemDecorationLastExcluded(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!)
+            )
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //reverse order(have most recent on top)
-        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
-            LinearLayoutManager.VERTICAL, true)
-        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
-        binding.recycleView.addItemDecoration(
-            DividerItemDecorationLastExcluded(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!))
+        manageLayout()
+
+    //    binding.recycleView.layoutManager = GridLayoutManager(this.context, 2, RecyclerView.VERTICAL , true)
+      //  (binding.recycleView.layoutManager as GridLayoutManager).
+//        binding.recycleView.layoutManager = LinearLayoutManager(this.context,
+//            LinearLayoutManager.VERTICAL, true)
+//        (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
+//        binding.recycleView.addItemDecoration(
+//            DividerItemDecorationLastExcluded(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!)
+//        )
         enterTransition = MaterialContainerTransform().apply {
             startView = requireActivity().findViewById(R.id.fab)
             endView = binding.historyLayout
@@ -176,6 +196,8 @@ class CookieHistoryFragment : Fragment() {
                 }
             }
         }
+        setButtons()
+
 
         //only used to improve performance
         //recyclerView.setHasFixedSize(true)
@@ -202,6 +224,27 @@ class CookieHistoryFragment : Fragment() {
                 count++
                 historyViewModel.deleteHistory(historyViewModel.selectList.removeLast()?.id!!)
             }
+
+            if(count == 0){
+                Snackbar.make(
+                    binding.recycleView,
+                    "please select cookies to delete",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }else{
+                //make snack bar
+                val plural: String
+                if (count>1)
+                    plural = "s"
+                else
+                    plural = ""
+                Snackbar.make(
+                    binding.recycleView,
+                    "deleted ${count} cookie${plural}",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+
 
             //adapter.notifyDataSetChanged()
         }
@@ -272,7 +315,7 @@ class CookieHistoryFragment : Fragment() {
                // card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
                 //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
             }else {
-                card.setCardBackgroundColor(Color.rgb(51,181,229))//blue
+                card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white_selectable, null))//blue
                 //card.setCardBackgroundColor(Color.WHITE)
                 //card.strokeWidth = 50 //dipToPixels(10f).toInt() //getResources().getDimension(R.dimen.ten).toInt()
                 Log.d(TAG, "deleteAll ${card.strokeWidth}")
