@@ -35,7 +35,7 @@
 
     <style name="ThemeOverlay.App.Switch" parent="">
         <item name="colorOnSurface">@color/selected_red</item>
-        <item name="colorSecondary">@color/dark_selected_red</item>
+        <item name="colorSecondary">@color/selected_red</item>
         <item name="colorSurface">@color/dark_silver</item>
     </style>
 <!--    <style name="card">-->

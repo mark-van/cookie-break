@@ -1,85 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
-    android:background="@drawable/tiles_background">
-    <LinearLayout
+    android:background="@drawable/tiles_background"
+    tools:context=".SettingsActivity">
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        app:contentPadding="5dp"
+        app:cardBackgroundColor="?attr/colorPrimaryVariant"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="5dp"
+        app:strokeColor="?attr/cardSelectBackgroundColor"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="?attr/colorPrimary">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dark_mode_text"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="60sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:checkedButton="@id/radio_night_mode_system"
-                android:id="@+id/radio_night_mode_group"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimary"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dark_mode_text"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textSize="60sp" />
+
+                <RadioGroup
+                    android:id="@+id/radio_night_mode_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checkedButton="@id/radio_night_mode_system"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radio_night_mode_system"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/system"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="30sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_night_mode_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/on"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="30sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_night_mode_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/off"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="30sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorSecondary"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radio_night_mode_system"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:textSize="30sp"
-                    android:text="@string/system" />
 
-                <RadioButton
-                    android:id="@+id/radio_night_mode_on"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:text="@string/on" />
+                    android:layout_weight="1"
+                    android:text="Audio"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="60sp" />
 
-                <RadioButton
-                    android:id="@+id/radio_night_mode_off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:text="@string/off" />
-            </RadioGroup>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/audio_switch"
+                    style="@style/Widget.App.Switch"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+
+
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="?attr/colorSecondary">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Audio"
-                android:layout_weight="1"
-                android:textSize="60sp"
-                android:textColor="?attr/colorOnSecondary"/>
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/audio_switch"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                style="@style/Widget.App.Switch"/>
-    </LinearLayout>
-
-
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

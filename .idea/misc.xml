@@ -14,6 +14,8 @@
         <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/CookieBreak2/app/src/main/res/mipmap-anydpi-v26/ic_cookie-5.xml" value="0.1" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable-anydpi/ic_settings_dark_mode.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable-night/ic_settings.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable-night/tiles_background.xml" value="0.2703125" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable-night/wood_background.xml" value="0.2703125" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/cirlcepractice.xml" value="0.14739583333333334" />
@@ -24,6 +26,9 @@
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_cookie_7.xml" value="0.2703125" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_cookie_eaten.xml" value="0.2703125" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_cookie_row.xml" value="0.2703125" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_settings.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_settings_s.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/ic_test1.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/test.xml" value="0.2703125" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/tiles_background.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/drawable/wood_background.xml" value="0.14739583333333334" />
@@ -35,7 +40,7 @@
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout-sw600dp/fragment_cookie_select.xml" value="0.264" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout-w600dp-land/fragment_cookie_select.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/activity_settings.xml" value="0.536" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/fragment_cookie_history.xml" value="0.24682971014492755" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/fragment_cookie_select.xml" value="0.176" />
         <entry key="..\:/Users/mark2/AndroidStudioProjects/cookie_break - MAIN/app/src/main/res/layout/fragment_settings.xml" value="0.2" />

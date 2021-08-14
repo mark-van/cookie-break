@@ -5,11 +5,10 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import com.example.cookiebreak.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.view.menu.MenuView
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -70,7 +69,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
-        return true
+//        val i:MenuView.ItemView = findViewById(R.id.settings_item)
+//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+//            //i.pointerIcon =  PointerIcon.load(drawable,R.drawable.ic_settings_dark_mode)
+//            //i.setIcon(getDrawable(R.drawable.ic_settings_dark_mode))
+//        }else{
+//            //i.setIcon(getDrawable(R.drawable.ic_settings_dark_mode))
+//        }
+        //i.setIcon(ContextCompat.getDrawable(this,R.drawable.ic_settings))
+        Log.d("MainActivity","onCreateOptionsMenu")
+            return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

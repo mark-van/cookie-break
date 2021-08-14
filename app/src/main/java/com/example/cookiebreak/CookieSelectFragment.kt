@@ -105,6 +105,11 @@ class CookieSelectFragment : Fragment() {
             cookiePortion()
             togglebuttons()
         }
+        binding.cookieDontEatButton.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
+            if(binding.cookieDontEatButton.width != 0){
+                binding.cookieEatButton.width = binding.cookieDontEatButton.width
+            }
+        }
         binding.cookieEatButton.setOnClickListener {
             Log.d(TAG, "eat")
 //            val current = Instant.now()
