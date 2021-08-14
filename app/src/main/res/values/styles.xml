@@ -28,6 +28,16 @@
         <item name="android:textColor">@color/selected_blue</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/selected_red</item>
+        <item name="colorSecondary">@color/dark_selected_red</item>
+        <item name="colorSurface">@color/dark_silver</item>
+    </style>
 <!--    <style name="card">-->
 <!--        <item name="cardSelectBackground">@color/white_selectable</item>-->
 <!--    </style>-->

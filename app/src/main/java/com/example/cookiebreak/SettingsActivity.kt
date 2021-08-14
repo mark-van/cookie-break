@@ -30,11 +30,17 @@ class SettingsActivity : AppCompatActivity() {
             else -> R.id.radio_night_mode_on
         }
         binding.radioNightModeGroup.check(checked)
+        binding.audioSwitch.isChecked = preferences.getBoolean("audio", true)
+        Log.d("MainActivity", "switchpref: ${preferences.getBoolean("audio", true)}")
+        Log.d("MainActivity", "switch: ${binding.audioSwitch.isChecked}")
         binding.audioSwitch.setOnCheckedChangeListener { compoundButton, c ->
             if (c){
-                //checcked
+                //checked
+                editor.putBoolean("audio",true)
+                editor.apply();
             }else{
-
+                editor.putBoolean("audio",false)
+                editor.apply();
             }
         }
 //        binding.radioNightModeGroup.setOnCheckedChangeListener { radioGroup, id ->

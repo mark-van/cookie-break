@@ -1,6 +1,7 @@
 package com.example.cookiebreak
 
 import android.content.res.Configuration
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -96,6 +98,8 @@ class CookieSelectFragment : Fragment() {
         cookieShow(randomInt)
         setButtons()
 
+        val preferences = this.activity?.getSharedPreferences("UserPreferences", AppCompatActivity.MODE_PRIVATE)
+        val audio:Boolean = preferences?.getBoolean("audio", true)!!
         //button listeners
         binding.cookieButton.setOnClickListener {
             cookiePortion()
@@ -106,7 +110,15 @@ class CookieSelectFragment : Fragment() {
 //            val current = Instant.now()
 //            val zone = TimeZone.getDefault().toZoneId()
 //            val clock = Clock.fixed(current, zone)
+            //monster bite audio by LucasDuff
+            //licensed under Creative Commons 0 License
+            //https://freesound.org/people/LucasDuff/sounds/467701/
+            if(audio){
+                var mediaPlayer = MediaPlayer.create(context, R.raw.lucasduff__monster_bite_cut)
+                mediaPlayer.start()
+            }
             viewModel.addNewItem(randomInt)
+            //set to eaten cookie vector
             randomInt = 9
             cookieShow(randomInt)
             togglebuttons()

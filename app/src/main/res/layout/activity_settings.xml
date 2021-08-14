@@ -75,7 +75,8 @@
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/audio_switch"
                 android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"
+                style="@style/Widget.App.Switch"/>
     </LinearLayout>
 
 
