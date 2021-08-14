@@ -32,19 +32,10 @@ class DividerItemDecorationLastExcluded(private val dividerDrawable: Drawable) :
                     val childAdapterPosition = parent.getChildAdapterPosition(view)
                         .let { if (it == RecyclerView.NO_POSITION) return else it }
                     if (childAdapterPosition != adapter.itemCount ) {
-//                        val top = view.bottom
-//                        val left = parent.paddingLeft
-//                        val bottom = top + dividerHeight
-//                        val right = left + dividerWidth - parent.paddingRight
                         val top = view.bottom
                         val left = parent.paddingLeft
                         val bottom = top + dividerHeight
                         val right = view.right
-
-//                        val left = view.right
-//                        val top = parent.paddingTop
-//                        val right = left + dividerWidth
-//                        val bottom = top + dividerHeight - parent.paddingBottom
                         dividerDrawable.bounds = Rect(left, top, right, bottom)
                         dividerDrawable.draw(canvas)
                     }

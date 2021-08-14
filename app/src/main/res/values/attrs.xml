@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="cardSelectBackgroundColor" format="reference|color" />
+    <attr name="cardSelectedBackgroundColor" format="reference|color" />
+    <attr name="cardBGColor" format="reference|color" />
+</resources>

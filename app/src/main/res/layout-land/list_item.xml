@@ -32,6 +32,7 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="4dp"
                 android:text="TextView"
+                android:textColor="?attr/colorOnSecondary"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
@@ -40,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
                 android:text="date"
+                android:textColor="?attr/colorOnSecondary"
                 android:textAppearance="?attr/textAppearanceCaption" />
         </LinearLayout>
 

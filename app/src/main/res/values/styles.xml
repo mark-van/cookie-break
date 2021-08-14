@@ -6,7 +6,6 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-
     <style name="cookie_button">
         <item name="android:background">@color/design_default_color_on_primary</item>
         <item name="android:fontFamily">@font/bungee</item>
@@ -29,6 +28,9 @@
         <item name="android:textColor">@color/selected_blue</item>
         <item name="android:textSize">14sp</item>
     </style>
+<!--    <style name="card">-->
+<!--        <item name="cardSelectBackground">@color/white_selectable</item>-->
+<!--    </style>-->
 
     <style name="itemCardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/white</item>

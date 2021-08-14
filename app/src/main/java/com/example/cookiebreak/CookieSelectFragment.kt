@@ -86,13 +86,13 @@ class CookieSelectFragment : Fragment() {
 //        observer.addOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener {
 //
 //        })
-        binding.cookieDontEatButton.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
-            if(binding.cookieDontEatButton.width != 0){
-                binding.cookieEatButton.width = binding.cookieDontEatButton.width
-                //binding.cookieDontEatButton.removeOnLayoutChangeListener()
-                //binding.cookieDontEatButton.viewTreeObserver.removeOnGlobalLayoutListener()
-            }
-        }
+//        binding.cookieDontEatButton.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
+//            if(binding.cookieDontEatButton.width != 0){
+//                binding.cookieEatButton.width = binding.cookieDontEatButton.width
+//                //binding.cookieDontEatButton.removeOnLayoutChangeListener()
+//                //binding.cookieDontEatButton.viewTreeObserver.removeOnGlobalLayoutListener()
+//            }
+//        }
         cookieShow(randomInt)
         setButtons()
 

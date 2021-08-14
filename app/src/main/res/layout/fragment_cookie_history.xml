@@ -12,9 +12,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_brown"
+        android:background="?attr/colorSecondary"
         android:id="@+id/history_layout"
-        tools:background="@color/background_brown">
+        tools:background="?attr/colorSecondary">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             tools:visibility="gone"
             android:paddingVertical="4dp"
-            android:background="@color/dark_brown"
+            android:background="?attr/colorSecondaryVariant"
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">

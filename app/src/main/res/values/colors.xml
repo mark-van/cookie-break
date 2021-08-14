@@ -16,4 +16,8 @@
     <color name="dark_silver">#6c757d</color>
     <color name="white_selectable">#e5e5e5</color>
     <color name="light_black">#463f3a</color>
+    <color name="off_white">#f7eeee</color>
+    <color name="dark_blue">#0d3b66</color>
+    <color name="bright_black">#6c757d</color>
+    <color name="dark_selected_red">#d90429</color>
 </resources>

@@ -6,7 +6,7 @@
   <path
       android:pathData="M70.743,70.743m-69.443,0a69.443,69.443 0,1 1,138.886 0a69.443,69.443 0,1 1,-138.886 0"
       android:strokeWidth="2.6"
-      android:fillColor="#f7eeee"
+      android:fillColor="?attr/colorOnPrimary"
       android:strokeColor="#d1cecb"/>
   <path
       android:pathData="M14.041,66.471C29.31,15.06 14.434,22.484 51.355,49.632 79.391,86.6 105.748,70.378 132.951,74.671 133.23,98.295 86.534,123.657 59.336,123.714 -6.832,109.884 14.703,73.562 14.041,66.471Z"

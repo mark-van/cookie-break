@@ -2,6 +2,7 @@ package com.example.cookiebreak
 
 import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -62,7 +63,7 @@ class CookieHistoryFragment : Fragment() {
 
     private fun onItemClicked(vh: ItemAdapter.ItemViewHolder, h: History){
         Log.d(TAG, "clicked onItemClicked")
-
+        var tv1 = TypedValue()
         val pos  = vh.adapterPosition
         val card: MaterialCardView = vh.itemView as MaterialCardView
         //toggle entry from list
@@ -74,14 +75,17 @@ class CookieHistoryFragment : Fragment() {
             Log.d(TAG, historyViewModel.selectList.toString())
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
             //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
-            card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white_selectable, null))
+            //card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white_selectable, null))
+            context?.theme?.resolveAttribute(R.attr.cardSelectBackgroundColor, tv1, true)
+            card.setCardBackgroundColor(tv1.data)
         }else {
             Log.d(TAG, historyViewModel.selectList.toString())
             historyViewModel.selectList.add(posIdPair(pos,h.id));
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
             //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
-            card.setCardBackgroundColor(
-                ResourcesCompat.getColor(getResources(), R.color.selected_red, null) )
+
+            context?.theme?.resolveAttribute(R.attr.cardSelectedBackgroundColor, tv1, true)
+            card.setCardBackgroundColor(tv1.data)
         }
         //ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
         //vh.itemView.background.setTint(Color.BLUE)
@@ -123,6 +127,7 @@ class CookieHistoryFragment : Fragment() {
     }
 
     fun manageLayout(){
+        //val widthDp = resources.displayMetrics.widthPixels /  resources.displayMetrics.density
         val widthDp = resources.displayMetrics.run { widthPixels / density }
         Log.d(TAG, "${widthDp}")
         val orientation = this.resources.configuration.orientation
@@ -299,6 +304,7 @@ class CookieHistoryFragment : Fragment() {
     }
 
     fun setEffects(vh: ItemAdapter.ItemViewHolder){
+        var tv = TypedValue()
         if(historyViewModel.select.value == false){
             //not clickable, and no sound effects
             vh.itemView.isClickable = false
@@ -311,20 +317,26 @@ class CookieHistoryFragment : Fragment() {
         val card: MaterialCardView = vh.itemView as MaterialCardView
         if(historyViewModel.select.value==true){
             if(contains(vh.adapterPosition) != -1) {
-                card.setCardBackgroundColor(Color.rgb(255,68,68))//red
+                context?.theme?.resolveAttribute(R.attr.cardSelectedBackgroundColor, tv, true)
+                card.setCardBackgroundColor(tv.data)
+                //card.setCardBackgroundColor(Color.rgb(255,68,68))//red
                // card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_red, null)
                 //card.strokeWidth = getResources().getDimension(R.dimen.ten).toInt()
             }else {
-                card.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white_selectable, null))//blue
+                context?.theme?.resolveAttribute(R.attr.cardSelectBackgroundColor, tv, true)
+                card.setCardBackgroundColor(tv.data)
                 //card.setCardBackgroundColor(Color.WHITE)
                 //card.strokeWidth = 50 //dipToPixels(10f).toInt() //getResources().getDimension(R.dimen.ten).toInt()
                 Log.d(TAG, "deleteAll ${card.strokeWidth}")
                 //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.selected_blue, null)
             }
         }else{
-            card.setCardBackgroundColor(Color.WHITE)
+            //esolveRefs: If true, resource references will be walked
+
+            context?.theme?.resolveAttribute(R.attr.cardBGColor, tv, true)
+            card.setCardBackgroundColor(tv.data)
             //card.strokeWidth = 50  //dipToPixels(10f).toInt() //getResources().getDimension(R.dimen.ten).toInt()
-            Log.d(TAG, "deleteAll ${card.strokeWidth}")
+            Log.d(TAG, "theme ${context?.theme}")
             //card.strokeColor = ResourcesCompat.getColor(getResources(), R.color.dark_brown, null)
         }
     }

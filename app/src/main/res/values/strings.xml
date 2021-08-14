@@ -34,4 +34,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_cookies_text">Have a cookie break!\n The cookies you eat will show up here.</string>
     <string name="cookie_jar">cookie jar</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="system">System</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="dark_mode">Dark Mode:</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode_text">Dark Mode</string>
 </resources>
