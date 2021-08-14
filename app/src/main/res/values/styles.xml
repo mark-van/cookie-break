@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="cookie_text">
-        <item name="android:fontFamily">@font/advent_pro_thin</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
     <style name="cookie_button">
         <item name="android:background">@color/design_default_color_on_primary</item>
         <item name="android:fontFamily">@font/bungee</item>
@@ -37,12 +32,5 @@
         <item name="colorOnSurface">@color/selected_red</item>
         <item name="colorSecondary">@color/selected_red</item>
         <item name="colorSurface">@color/dark_silver</item>
-    </style>
-<!--    <style name="card">-->
-<!--        <item name="cardSelectBackground">@color/white_selectable</item>-->
-<!--    </style>-->
-
-    <style name="itemCardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/white</item>
     </style>
 </resources>
