@@ -1,8 +1,8 @@
-package com.example.cookiebreak.model
+package com.markvangenderen.cookiebreak.model
 
 import androidx.lifecycle.*
-import com.example.cookiebreak.database.History
-import com.example.cookiebreak.database.HistoryDao
+import com.markvangenderen.cookiebreak.database.History
+import com.markvangenderen.cookiebreak.database.HistoryDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
@@ -46,27 +46,13 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
         val newItem = getNewItemEntry(cookiePortion)
         insertHistory(newItem)
     }
-//    fun isEntryValid(cookiePortion: Int, cookieTime: Int): Boolean {
-//        if ((cookiePortion >= 0) && (cookiePortion <= 8)) {
-//            return false
-//        }
-//        return true
-//    }
+
 
     private fun getNewItemEntry(cookiePortion: Int): History {
         return History(
             cookiePortion = cookiePortion
         )
     }
-
-//    fun insert(h: History){
-//        historyDao.insert(h)
-//    }
-
-//    var selectButton: Boolean = true
-//    var deleteButton: Boolean = false
-//    var deleteAllButton: Boolean = true
-
 
 }
 
@@ -83,9 +69,5 @@ class EatenCookiesModelFactory(private val historyDao: HistoryDao): ViewModelPro
 }
 
 class PosIdPair(val pos:Int, val id:Int)
-//
-//class myList(override val size: Int) : MutableList<posIdPair>{
-//    fun contains(pos: Int): Boolean {
-//        return true
-//    }
+
 

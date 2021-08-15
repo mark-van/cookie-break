@@ -1,10 +1,9 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -13,19 +12,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Slide
-import com.example.cookiebreak.adapter.ItemAdapter
-import com.example.cookiebreak.database.CookieBreakApplication
-import com.example.cookiebreak.database.History
-import com.example.cookiebreak.databinding.FragmentCookieHistoryBinding
-import com.example.cookiebreak.model.EatenCookiesModel
-import com.example.cookiebreak.model.EatenCookiesModelFactory
-import com.example.cookiebreak.model.PosIdPair
-import com.example.cookiebreak.util.DividerItemDecorationLastExcluded
+import com.markvangenderen.cookiebreak.adapter.ItemAdapter
+import com.markvangenderen.cookiebreak.database.CookieBreakApplication
+import com.markvangenderen.cookiebreak.database.History
+import com.markvangenderen.cookiebreak.databinding.FragmentCookieHistoryBinding
+import com.markvangenderen.cookiebreak.model.EatenCookiesModel
+import com.markvangenderen.cookiebreak.model.EatenCookiesModelFactory
+import com.markvangenderen.cookiebreak.model.PosIdPair
+import com.markvangenderen.cookiebreak.util.DividerItemDecorationLastExcluded
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -37,10 +35,6 @@ class CookieHistoryFragment : Fragment() {
     private var _binding: FragmentCookieHistoryBinding? = null
     private val binding get() = _binding!!
 
-
-    companion object {
-        const val TAG = "Main"
-    }
 
     //activityViewModels() gives you the ViewModel instance scoped to the current activity.
     //Therefore the instance will remain the same across multiple fragments in the same activity.
@@ -61,11 +55,9 @@ class CookieHistoryFragment : Fragment() {
         val index = contains(pos)
         if(index != -1) {
             historyViewModel.selectList.removeAt(index)
-            Log.d(TAG, historyViewModel.selectList.toString())
             context?.theme?.resolveAttribute(R.attr.cardSelectBackgroundColor, tv1, true)
             card.setCardBackgroundColor(tv1.data)
         }else {
-            Log.d(TAG, historyViewModel.selectList.toString())
             historyViewModel.selectList.add(PosIdPair(pos,h.id))
             context?.theme?.resolveAttribute(R.attr.cardSelectedBackgroundColor, tv1, true)
             card.setCardBackgroundColor(tv1.data)
@@ -137,7 +129,6 @@ class CookieHistoryFragment : Fragment() {
         historyViewModel.allItems.observe(this.viewLifecycleOwner) { items ->
             items.let {
                 adapter.submitList(it)
-                //Log.d(TAG, "allItems.observe ${it.isEmpty()}")
                 //if there are no items
                 if(it.isEmpty()){
                     binding.linearLayout.visibility = View.GONE
@@ -151,7 +142,6 @@ class CookieHistoryFragment : Fragment() {
         setButtons()
 
         binding.selectButton.setOnClickListener {
-            Log.d(TAG, "selectbutton")
             historyViewModel.select.value = !historyViewModel.select.value!!
             if(historyViewModel.select.value!!)
                 historyViewModel.selectList.clear()
@@ -252,12 +242,10 @@ class CookieHistoryFragment : Fragment() {
             }else {
                 context?.theme?.resolveAttribute(R.attr.cardSelectBackgroundColor, tv, true)
                 card.setCardBackgroundColor(tv.data)
-                Log.d(TAG, "deleteAll ${card.strokeWidth}")
             }
         }else{
             context?.theme?.resolveAttribute(R.attr.cardBGColor, tv, true)
             card.setCardBackgroundColor(tv.data)
-            Log.d(TAG, "theme ${context?.theme}")
         }
     }
 

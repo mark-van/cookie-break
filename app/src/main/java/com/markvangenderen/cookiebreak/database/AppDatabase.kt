@@ -1,4 +1,4 @@
-package com.example.cookiebreak.database
+package com.markvangenderen.cookiebreak.database
 
 import android.content.Context
 import androidx.room.Database

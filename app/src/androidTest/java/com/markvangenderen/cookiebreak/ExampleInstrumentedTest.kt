@@ -1,4 +1,4 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

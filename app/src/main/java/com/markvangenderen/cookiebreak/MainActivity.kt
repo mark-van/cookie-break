@@ -1,12 +1,11 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import com.example.cookiebreak.databinding.ActivityMainBinding
+import com.markvangenderen.cookiebreak.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     private fun preferencesSetup(){
         //MODE_PRIVATE: created file can only be accessed by the calling application
         preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-        Log.d("MainActivity", "${preferences.getInt("night_mode",0)}")
 
         when (preferences.getInt("night_mode",0)){
             0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

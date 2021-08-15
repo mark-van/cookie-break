@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/cookieHistoryFragment"
-        android:name="com.example.cookiebreak.CookieHistoryFragment"
+        android:name="com.markvangenderen.cookiebreak.CookieHistoryFragment"
         android:label="@string/cookie_history_fragment_label" />
     <fragment
         android:id="@+id/cookieSelectFragment"
-        android:name="com.example.cookiebreak.CookieSelectFragment"
+        android:name="com.markvangenderen.cookiebreak.CookieSelectFragment"
         android:label="@string/cookie_select_fragment_label">
         <action
             android:id="@+id/action_cookieSelectFragment_to_cookieHistoryFragment"

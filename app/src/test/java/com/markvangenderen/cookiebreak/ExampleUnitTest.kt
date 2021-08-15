@@ -1,4 +1,4 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import org.junit.Test
 

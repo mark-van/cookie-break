@@ -7,7 +7,7 @@
     <data>
         <variable
             name="EatenCookiesModel"
-            type="com.example.cookiebreak.model.EatenCookiesModel" />
+            type="com.markvangenderen.cookiebreak.model.EatenCookiesModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

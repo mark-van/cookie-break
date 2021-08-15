@@ -1,10 +1,9 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import com.example.cookiebreak.database.CookieBreakApplication
-import com.example.cookiebreak.databinding.FragmentCookieSelectBinding
-import com.example.cookiebreak.model.EatenCookiesModel
-import com.example.cookiebreak.model.EatenCookiesModelFactory
+import com.markvangenderen.cookiebreak.database.CookieBreakApplication
+import com.markvangenderen.cookiebreak.databinding.FragmentCookieSelectBinding
+import com.markvangenderen.cookiebreak.model.EatenCookiesModel
+import com.markvangenderen.cookiebreak.model.EatenCookiesModelFactory
 import com.google.android.material.transition.MaterialElevationScale
 
 
@@ -34,24 +33,20 @@ class CookieSelectFragment : Fragment() {
         )
     }
 
-    companion object {
-        const val TAG = "MyActivity"
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCookieSelectBinding.inflate(inflater, container, false)
-        val view = binding.root
-        Log.d("hello", "ww3 ${binding.cookieEatButton.width}")
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //monster bite audio by LucasDuff
+        //licensed under Creative Commons 0 License
+        //https://freesound.org/people/LucasDuff/sounds/467701/
         mediaPlayer = MediaPlayer.create(context, R.raw.lucasduff__monster_bite_cut)
         randomInt = viewModel.randomInt
         buttons = viewModel.buttons
@@ -79,12 +74,10 @@ class CookieSelectFragment : Fragment() {
             }
         }
         binding.cookieEatButton.setOnClickListener {
-            Log.d(TAG, "eat")
-            //monster bite audio by LucasDuff
-            //licensed under Creative Commons 0 License
-            //https://freesound.org/people/LucasDuff/sounds/467701/
-            if(audio){
-                //mediaPlayer.reset()
+            if(mediaPlayer.isPlaying){
+                //reset
+                mediaPlayer.seekTo(0)
+            }else if(audio){
                 mediaPlayer.start()
             }
             viewModel.addNewItem(randomInt)
@@ -94,13 +87,11 @@ class CookieSelectFragment : Fragment() {
             togglebuttons()
         }
         binding.cookieDontEatButton.setOnClickListener {
-            Log.d(TAG, "dont eat")
             randomInt = 0
             cookieShow(randomInt)
             togglebuttons()
         }
         binding.fab.setOnClickListener {
-            Log.d(TAG, "fab")
             //causes this fragment to grow/shrink during the transition
             this.apply {
                 exitTransition = MaterialElevationScale(false).apply {

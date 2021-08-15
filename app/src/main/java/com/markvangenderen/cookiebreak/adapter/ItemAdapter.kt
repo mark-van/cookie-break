@@ -1,18 +1,15 @@
-package com.example.cookiebreak.adapter
+package com.markvangenderen.cookiebreak.adapter
 
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cookiebreak.CookieSelectFragment.Companion.TAG
-import com.example.cookiebreak.R
-import com.example.cookiebreak.database.History
-import com.example.cookiebreak.databinding.ListItemBinding
+import com.markvangenderen.cookiebreak.R
+import com.markvangenderen.cookiebreak.database.History
+import com.markvangenderen.cookiebreak.databinding.ListItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -81,8 +78,6 @@ class ItemAdapter (private val onItemClicked: (ItemViewHolder, History) -> Unit,
         holder.itemView.setOnClickListener {
             onItemClicked(holder, current)
         }
-
-        Log.d(TAG, "onBindViewHolder ${holder.adapterPosition}")
         setEffects(holder)
     }
 

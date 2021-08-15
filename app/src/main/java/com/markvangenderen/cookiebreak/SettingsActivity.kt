@@ -1,10 +1,10 @@
-package com.example.cookiebreak
+package com.markvangenderen.cookiebreak
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.cookiebreak.databinding.ActivitySettingsBinding
+import com.markvangenderen.cookiebreak.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
 

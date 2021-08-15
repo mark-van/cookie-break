@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cookiebreak">
+    package="com.markvangenderen.cookiebreak">
 
     <application
-        android:name="com.example.cookiebreak.database.CookieBreakApplication"
+        android:name="com.markvangenderen.cookiebreak.database.CookieBreakApplication"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher_full_cookie"
@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookieBreak">
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.markvangenderen.cookiebreak.SettingsActivity"
             android:exported="true"
-            android:parentActivityName="com.example.cookiebreak.MainActivity">
+            android:parentActivityName="com.markvangenderen.cookiebreak.MainActivity">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.markvangenderen.cookiebreak.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
