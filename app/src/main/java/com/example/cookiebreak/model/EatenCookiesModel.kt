@@ -6,12 +6,9 @@ import com.example.cookiebreak.database.HistoryDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
-import java.text.SimpleDateFormat
 
-//viewmodel for history activity
-
-//for data persistance
-
+//ViewModel model for MainActivity fragments
+//implemented a shared ViewModel to simplify database management
 class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
 
     var randomInt: Int = 0
@@ -22,12 +19,12 @@ class EatenCookiesModel(private val historyDao: HistoryDao) : ViewModel() {
     val allItems: LiveData<List<History>> = fullHistory().asLiveData()
 
     //can only me set by the activity instantiating EatenCookiesModel
-    var select = MutableLiveData<Boolean>(false)
+    var select = MutableLiveData(false)
 
-    var selectList = mutableListOf<posIdPair>()
+    var selectList = mutableListOf<PosIdPair>()
 
 
-    fun fullHistory(): Flow<List<History>> = historyDao.getAll()
+    private fun fullHistory(): Flow<List<History>> = historyDao.getAll()
 
     private fun insertHistory(history: History){
         viewModelScope.launch {
@@ -85,7 +82,7 @@ class EatenCookiesModelFactory(private val historyDao: HistoryDao): ViewModelPro
 
 }
 
-class posIdPair(val pos:Int, val id:Int)
+class PosIdPair(val pos:Int, val id:Int)
 //
 //class myList(override val size: Int) : MutableList<posIdPair>{
 //    fun contains(pos: Int): Boolean {

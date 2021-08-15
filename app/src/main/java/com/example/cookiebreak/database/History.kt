@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//schema for the databases sole relation(History)
 @Entity
 data class History(
 
@@ -17,6 +18,3 @@ data class History(
     @ColumnInfo(name = "cookie_portion") val cookiePortion: Int,
     @NonNull @ColumnInfo(name = "cookie_time") val cookieTime: Long = System.currentTimeMillis()
 )
-// but for date
-//fun Item.getFormattedPrice(): String =
-//    NumberFormat.getCurrencyInstance().format(itemPrice)

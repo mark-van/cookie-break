@@ -8,20 +8,7 @@
     <string name="image_of_cookie_desc">Image of suggested cookie portion</string>
     <string name="eat">Eat</string>
     <string name="don_t_eat">Don\'t Eat</string>
-    <string name="button_to_history">Go to history</string>
     <string name="go_to_history">Go to history</string>
-    <string name="eanten_cookie1">3</string>
-    <string name="eanten_cookie1_date">Wednesday MM-dd-yyyy Time: HH:mm</string>
-    <string name="eanten_cookie2">7</string>
-    <string name="eanten_cookie2_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
-    <string name="eanten_cookie3">2</string>
-    <string name="eanten_cookie3_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
-    <string name="eanten_cookie4">5</string>
-    <string name="eanten_cookie4_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
-    <string name="eanten_cookie5">6</string>
-    <string name="eanten_cookie5_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
-    <string name="eanten_cookie6">1</string>
-    <string name="eanten_cookie6_date">EEEE MMM-dd-yyyy Time: HH:mm</string>
     <string name="select">Select</string>
     <string name="delete">Delete</string>
     <string name="delete_all">Delete All</string>
@@ -30,15 +17,22 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="delete_all_check_message">Are you sure you wish to permanently delete all eaten cookie history?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_cookies_text">Have a cookie break!\n The cookies you eat will show up here.</string>
     <string name="cookie_jar">cookie jar</string>
-    <string name="night_mode">Night Mode</string>
     <string name="system">System</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <string name="dark_mode">Dark Mode:</string>
     <string name="settings">Settings</string>
     <string name="dark_mode_text">Dark Mode</string>
+    <string name="image_of_cookie_portion">Image of cookie portion</string>
+    <string name="audio">Audio</string>
+    <string name="history">HISTORY</string>
+    <string name="date">date</string>
+    <string name="cookie_end"> cookie</string>
+    <string name="full">full</string>
+    <string name="three_quarter">three quarter</string>
+    <string name="half">half</string>
+    <string name="quarter">quarter</string>
+    <string name="no_lower_case">no</string>
+    <string name="eaten">eaten</string>
 </resources>

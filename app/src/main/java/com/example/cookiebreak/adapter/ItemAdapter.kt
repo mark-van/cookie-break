@@ -1,6 +1,8 @@
 package com.example.cookiebreak.adapter
 
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,32 +14,32 @@ import com.example.cookiebreak.R
 import com.example.cookiebreak.database.History
 import com.example.cookiebreak.databinding.ListItemBinding
 import java.text.SimpleDateFormat
+import java.util.*
 
-class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Unit,
-                   private val onItemClicked: (ItemAdapter.ItemViewHolder, History) -> Unit,
-                   private val setEffects: (ItemAdapter.ItemViewHolder) -> Unit)
+//adapter for RecycleView with listAdapter
+class ItemAdapter (private val onItemClicked: (ItemViewHolder, History) -> Unit,
+                   private val setEffects: (ItemViewHolder) -> Unit)
     : ListAdapter<History, ItemAdapter.ItemViewHolder>(DiffCallback){
 
-
-    //ok, lets make model
-    //create an ItemViewHolder class
-    //retunrs a viewholder
     class ItemViewHolder(private var binding: ListItemBinding) :
-        //??
         RecyclerView.ViewHolder(binding.root) {
+
+        @SuppressLint("SetTextI18n")
+        //set contents for item view
         fun bind(history: History) {
             binding.itemDate.text = convertLongToDateString(history.cookieTime)
             binding.itemPortion.text = when (history.cookiePortion) {
-                0 -> "no"
+                0 -> binding.root.context.resources.getString(R.string.no_lower_case)
                 1 -> "1/8"
-                2 -> "quarter"
+                2 -> binding.root.context.resources.getString(R.string.quarter)
                 3 -> "3/8"
-                4 -> "half"
+                4 -> binding.root.context.resources.getString(R.string.half)
                 5 -> "5/8"
-                6 -> "three quarter"
+                6 -> binding.root.context.resources.getString(R.string.three_quarter)
                 7 -> "7/8"
-                else -> "full"
-            } + " cookie"
+                8 -> binding.root.context.resources.getString(R.string.full)
+                else -> binding.root.context.resources.getString(R.string.eaten)
+            } + binding.root.context.resources.getString(R.string.cookie_end)
             val drawableResource = when (history.cookiePortion) {
                 0 -> R.drawable.ic_cookie_none
                 1 -> R.drawable.ic_cookie_1
@@ -52,8 +54,8 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
             binding.itemImage.setImageResource(drawableResource)
         }
 
-        fun convertLongToDateString(systemTime: Long): String {
-            return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'hh:mm aa")
+        private fun convertLongToDateString(systemTime: Long): String {
+            return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'hh:mm aa", Locale.getDefault())
                 .format(systemTime).toString()
         }
     }
@@ -66,14 +68,6 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
 
         val vh = ItemViewHolder(adapterLayout)
         setEffects(vh)
-        Log.d(TAG, "onCreateViewHolder ${vh.adapterPosition}")
-//        vh.itemView.setOnClickListener {
-//            //itemClick(vh)
-//        }
-//        vh.itemView.setOnLongClickListener {
-//            //itemLongClick(vh)
-//            return@setOnLongClickListener true
-//        }
         return vh
     }
 
@@ -93,6 +87,7 @@ class ItemAdapter (private val itemLongClick: (ItemAdapter.ItemViewHolder) -> Un
     }
 
 
+    //ItemAdapter callbacks
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<History>() {
             override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {

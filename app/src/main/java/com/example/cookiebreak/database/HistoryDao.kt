@@ -8,7 +8,7 @@ interface  HistoryDao {
     @Query("SELECT * FROM history ORDER BY cookie_time ASC")
     fun getAll(): Flow<List<History>>
 
-    //insert is a suspend function so that it can be ryn from coroutine
+    //insert is a suspend function so that it can be run from coroutine
     //insert can take awhile
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(history: History)

@@ -19,13 +19,12 @@ abstract class AppDatabase: RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "cookie_database")
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration() //maybe research a more efficient method later
                     .build()
                 INSTANCE = instance
 
-                return instance //changed?
+                return instance
             }
-            //+.createFromAsset("database/cookie_history.db") //where you load exisitng data
         }
     }
 }

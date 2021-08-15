@@ -7,8 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/wood_background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/wood_background">
 
         <LinearLayout
             android:id="@+id/outerview"
@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/advent_pro_thin"
-                android:textSize="20sp"
-                android:text="@string/cookie_text" />
+                android:text="@string/cookie_text"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/cookie_image_view"
@@ -51,10 +51,10 @@
                         android:id="@+id/cookie_question"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/alfa_slab_one"
                         android:layout_centerInParent="true"
-                        android:textColor="@color/dark_brown"
+                        android:fontFamily="@font/alfa_slab_one"
                         android:text="@string/cookie_question"
+                        android:textColor="@color/dark_brown"
                         android:textSize="40sp" />
                 </RelativeLayout>
 
@@ -63,7 +63,7 @@
                     android:id="@+id/relativeView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                     android:id="@+id/fab"
@@ -77,81 +77,75 @@
                     android:contentDescription="@string/go_to_history"
                     android:focusable="true"
                     android:padding="0dp"
-                    android:text="HISTORY"
                     app:backgroundTint="#AA4400"
                     app:icon="@android:drawable/ic_menu_recent_history" />
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignTop="@id/relativeView">
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/relativeView"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/relativeViewTwo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cookie_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/bungee"
+                        android:gravity="center"
+                        android:text="@string/for_me"
+                        android:textSize="20sp"
+                        android:visibility="gone"
+                        app:cornerRadius="40dp"
+                        app:elevation="4dp"
+                        tools:ignore="TextContrastCheck" />
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:layout_alignEnd="@id/relativeViewTwo">
 
-                        <View
-                            android:id="@+id/relativeViewTwo"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/cookie_button"
+                        <Button
+                            android:id="@+id/cookie_eat_button"
+                            style="@style/cookie_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/bungee"
                             android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/for_me"
+                            android:text="@string/eat"
+                            android:textAlignment="center"
                             android:textSize="20sp"
-                            android:visibility="gone"
-                            app:cornerRadius="40dp"
-                            app:elevation="4dp"
+                            android:visibility="visible"
                             tools:ignore="TextContrastCheck" />
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_alignRight="@id/relativeViewTwo">
-
-                            <Button
-                                android:id="@+id/cookie_eat_button"
-                                style="@style/cookie_button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="@string/eat"
-                                android:textAlignment="center"
-                                android:textSize="20sp"
-                                android:visibility="visible"
-                                tools:ignore="TextContrastCheck" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_alignLeft="@id/relativeViewTwo">
-
-                            <Button
-                                android:id="@+id/cookie_dont_eat_button"
-                                style="@style/cookie_button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="@string/don_t_eat"
-                                android:textAlignment="center"
-                                android:textSize="20sp"
-                                android:visibility="visible"
-                                tools:ignore="TextContrastCheck" />
-                        </RelativeLayout>
-
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignStart="@id/relativeViewTwo">
+
+                        <Button
+                            android:id="@+id/cookie_dont_eat_button"
+                            style="@style/cookie_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/don_t_eat"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:visibility="visible"
+                            tools:ignore="TextContrastCheck" />
+                    </RelativeLayout>
+
                 </RelativeLayout>
 
             </RelativeLayout>

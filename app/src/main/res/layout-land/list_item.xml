@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -31,7 +31,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="4dp"
-                android:text="TextView"
+                android:text=""
                 android:textColor="?attr/colorOnSecondary"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
-                android:text="date"
+                android:text="@string/date"
                 android:textColor="?attr/colorOnSecondary"
                 android:textAppearance="?attr/textAppearanceCaption" />
         </LinearLayout>
@@ -50,7 +50,8 @@
             android:id="@+id/item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/image_of_cookie_portion"/>
 
     </LinearLayout>
 

@@ -8,13 +8,10 @@ import android.util.Log
 import android.view.*
 import com.example.cookiebreak.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.view.menu.MenuView
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 
-private lateinit var binding: ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,14 +20,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //getWindow().getDecorView().background = ContextCompat.getDrawable(this,R.drawable.tiles_background)
         super.onCreate(savedInstanceState)
         preferencesSetup()
-        val nightMode = AppCompatDelegate.getDefaultNightMode();
-        Log.d("MainActivity", "Main: ${nightMode}")
-        //getWindow().getDecorView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.background_brown, null));
-        //set night mode to what
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,25 +30,13 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        //ensures action bar (app bar) buttons arevisibel
+        //ensures action bar (app bar) buttons are visible
         setupActionBarWithNavController(this, navController)
-//        val nightMode = AppCompatDelegate.getDefaultNightMode();
-
-//        this.resources.configuration.isNightModeActive.
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            if(this.resources.configuration.isNightModeActive){
-//
-//            }
-//
-//        }
-
-        Log.d("MainActivity", "main oncreate")
     }
 
-    fun preferencesSetup(){
+    private fun preferencesSetup(){
         //MODE_PRIVATE: created file can only be accessed by the calling application
         preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-        //preferences = getPreferences(MODE_PRIVATE)
         Log.d("MainActivity", "${preferences.getInt("night_mode",0)}")
 
         when (preferences.getInt("night_mode",0)){
@@ -69,25 +49,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
-//        val i:MenuView.ItemView = findViewById(R.id.settings_item)
-//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            //i.pointerIcon =  PointerIcon.load(drawable,R.drawable.ic_settings_dark_mode)
-//            //i.setIcon(getDrawable(R.drawable.ic_settings_dark_mode))
-//        }else{
-//            //i.setIcon(getDrawable(R.drawable.ic_settings_dark_mode))
-//        }
-        //i.setIcon(ContextCompat.getDrawable(this,R.drawable.ic_settings))
-        Log.d("MainActivity","onCreateOptionsMenu")
             return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId==R.id.settings_item){
             val intent = Intent(this, SettingsActivity::class.java)
-            //startService(intent);
-            startActivity(intent);
-            //onNightModeChanged()
-            Log.d("MainActivity", "onOptionsItemSelected")
+            startActivity(intent)
             return true
         }
         return false
@@ -98,9 +66,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-//
-//    private fun isDarkModeOn(): Boolean {
-//        val currentNightMode = resources.configuration.uiMode and  Configuration.UI_MODE_NIGHT_MASK
-//        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
-//    }
 }

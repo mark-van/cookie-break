@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_brown">
+        android:background="?attr/colorSecondary"
+        android:id="@+id/history_layout">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="10dp"
-            android:background="#AA4400"
+            android:background="?attr/colorSecondaryVariant"
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
@@ -80,14 +81,14 @@
                 android:id="@+id/select_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/select" />
 
             <Button
                 android:id="@+id/delete_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="@string/delete"
                 />
 
