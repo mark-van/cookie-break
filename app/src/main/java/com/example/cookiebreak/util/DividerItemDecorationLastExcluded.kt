@@ -36,7 +36,7 @@ class DividerItemDecorationLastExcluded(val context: Context, private val divide
     //determine suitable width and height values for the bounding rectangle which produces a width
     //of 20dp without distorting(stretching) the drawing
     fun desiredDimensions(){
-        height = context.resources.displayMetrics.run { density*20 }.toInt()
+        height = context.resources.displayMetrics.run { density*15 }.toInt()
         width = dividerDrawable.intrinsicWidth/dividerDrawable.intrinsicHeight*height
     }
 
