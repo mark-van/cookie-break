@@ -26,6 +26,7 @@ class CookieSelectFragment : Fragment() {
 
     private var randomInt: Int = 0
     private var buttons: Int = 0
+    lateinit var mediaPlayer: MediaPlayer
 
     private val viewModel: EatenCookiesModel by activityViewModels{
         EatenCookiesModelFactory(
@@ -51,6 +52,7 @@ class CookieSelectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mediaPlayer = MediaPlayer.create(context, R.raw.lucasduff__monster_bite_cut)
         randomInt = viewModel.randomInt
         buttons = viewModel.buttons
         val orientation = this.resources.configuration.orientation
@@ -82,7 +84,7 @@ class CookieSelectFragment : Fragment() {
             //licensed under Creative Commons 0 License
             //https://freesound.org/people/LucasDuff/sounds/467701/
             if(audio){
-                val mediaPlayer = MediaPlayer.create(context, R.raw.lucasduff__monster_bite_cut)
+                //mediaPlayer.reset()
                 mediaPlayer.start()
             }
             viewModel.addNewItem(randomInt)

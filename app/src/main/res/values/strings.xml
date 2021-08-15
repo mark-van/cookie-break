@@ -28,7 +28,7 @@
     <string name="audio">Audio</string>
     <string name="history">HISTORY</string>
     <string name="date">date</string>
-    <string name="cookie_end"> cookie</string>
+    <string name="cookie_end">\u0020cookie</string>
     <string name="full">full</string>
     <string name="three_quarter">three quarter</string>
     <string name="half">half</string>
