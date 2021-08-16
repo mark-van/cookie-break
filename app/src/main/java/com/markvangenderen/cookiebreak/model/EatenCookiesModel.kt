@@ -68,6 +68,7 @@ class EatenCookiesModelFactory(private val historyDao: HistoryDao): ViewModelPro
 
 }
 
+//Made PosIdPair type to associate a position in RecycleView with an item id
 class PosIdPair(val pos:Int, val id:Int)
 
 

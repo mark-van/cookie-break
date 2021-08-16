@@ -3,10 +3,11 @@ package com.markvangenderen.cookiebreak
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
-import android.icu.lang.UCharacter.IndicPositionalCategory.RIGHT
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.Gravity.END
+import android.view.Gravity.RIGHT
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Explode
 import androidx.transition.Slide
 import com.markvangenderen.cookiebreak.adapter.ItemAdapter
 import com.markvangenderen.cookiebreak.database.CookieBreakApplication
@@ -99,7 +99,6 @@ class CookieHistoryFragment : Fragment() {
                 LinearLayoutManager.VERTICAL, true)
             (binding.recycleView.layoutManager as LinearLayoutManager).stackFromEnd = true
             binding.recycleView.addItemDecoration(
-                //DividerItemDecoration(ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row))
                 DividerItemDecorationLastExcluded(this.requireContext(), ContextCompat.getDrawable(requireContext(), R.drawable.ic_cookie_row)!!)
             )
         }
@@ -118,7 +117,7 @@ class CookieHistoryFragment : Fragment() {
             endContainerColor = ResourcesCompat.getColor(resources, R.color.background_brown, null)
 
         }
-        returnTransition = Slide(Gravity.RIGHT).apply {
+        returnTransition = Slide(END).apply {
             duration = 200
             addTarget(R.id.history_layout)
         }
