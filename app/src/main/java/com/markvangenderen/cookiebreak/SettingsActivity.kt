@@ -14,6 +14,7 @@ class SettingsActivity : AppCompatActivity() {
         val preferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = preferences.edit() //remember to commit edits
         val binding = ActivitySettingsBinding.inflate(layoutInflater)
+        overridePendingTransition(R.anim.slide_down_from_top,R.anim.slide_down_from_center) //lets have settings slide in and out from top
         setContentView(binding.root)
 
         //set initial checked values

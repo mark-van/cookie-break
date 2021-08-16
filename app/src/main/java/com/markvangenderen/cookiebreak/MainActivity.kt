@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
+        overridePendingTransition(R.anim.slide_up_from_bottom,R.anim.slide_up_from_center)
         //ensures action bar (app bar) buttons are visible
         setupActionBarWithNavController(this, navController)
     }

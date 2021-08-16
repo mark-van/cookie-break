@@ -3,8 +3,10 @@ package com.markvangenderen.cookiebreak
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
+import android.icu.lang.UCharacter.IndicPositionalCategory.RIGHT
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Explode
 import androidx.transition.Slide
 import com.markvangenderen.cookiebreak.adapter.ItemAdapter
 import com.markvangenderen.cookiebreak.database.CookieBreakApplication
@@ -108,16 +111,15 @@ class CookieHistoryFragment : Fragment() {
         manageLayout()
         enterTransition = MaterialContainerTransform().apply {
             startView = requireActivity().findViewById(R.id.fab)
-            endView = binding.historyLayout
-            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+            duration = 300
             scrimColor = Color.TRANSPARENT
             containerColor = Color.TRANSPARENT
             startContainerColor = ResourcesCompat.getColor(resources, R.color.dark_brown, null)
             endContainerColor = ResourcesCompat.getColor(resources, R.color.background_brown, null)
 
         }
-        returnTransition = Slide().apply {
-            duration = resources.getInteger(R.integer.reply_motion_duration_medium).toLong()
+        returnTransition = Slide(Gravity.RIGHT).apply {
+            duration = 200
             addTarget(R.id.history_layout)
         }
 

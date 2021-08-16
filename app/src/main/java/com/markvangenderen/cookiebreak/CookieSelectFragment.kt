@@ -3,15 +3,18 @@ package com.markvangenderen.cookiebreak
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.google.android.material.transition.MaterialContainerTransform
 import com.markvangenderen.cookiebreak.database.CookieBreakApplication
 import com.markvangenderen.cookiebreak.databinding.FragmentCookieSelectBinding
 import com.markvangenderen.cookiebreak.model.EatenCookiesModel
@@ -101,14 +104,13 @@ class CookieSelectFragment : Fragment() {
         }
         binding.fab.setOnClickListener {
             //causes this fragment to grow/shrink during the transition
-            this.apply {
-                exitTransition = MaterialElevationScale(false).apply {
-                    duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-                }
-                reenterTransition = MaterialElevationScale(true).apply {
-                    duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-                }
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = 350
             }
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = 350
+            }
+
             val action = CookieSelectFragmentDirections.actionCookieSelectFragmentToCookieHistoryFragment()
             view.findNavController().navigate(action)
         }

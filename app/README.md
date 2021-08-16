@@ -14,6 +14,7 @@ https://play.google.com/store/apps/dev?id=6272061391448889955
 - As a user, I want to be able to switch on and off audio functionality
 - As a user, I want to be able to return to the app with my settings preserved
 - As a user, I want to be able to see new eaten cookie entries at the top of my screen without scrolling
+- As a user, I want to be able to use the app on any mobile device
 
 ## Who will use it
 Cookie lovers and people on a diet looking to chance/track their cookie consumption
@@ -23,3 +24,6 @@ Cookie lovers and people on a diet looking to chance/track their cookie consumpt
 - I like cookies
 - Thought this was a unique app idea with some utility that I could fully implement as someone new to android development
 - Wanted the learning experience of completing native mobile app development from an empty project to the marketplace
+<!-- 
+## Style features
+-  -->
