@@ -1,6 +1,7 @@
 package com.markvangenderen.cookiebreak
 
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -26,6 +27,8 @@ class CookieSelectFragment : Fragment() {
     private var randomInt: Int = 0
     private var buttons: Int = 0
     lateinit var mediaPlayer: MediaPlayer
+    private var audio = true
+    lateinit var preferences: SharedPreferences
 
     private val viewModel: EatenCookiesModel by activityViewModels{
         EatenCookiesModelFactory(
@@ -33,6 +36,10 @@ class CookieSelectFragment : Fragment() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        audio = preferences.getBoolean("audio", true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +51,7 @@ class CookieSelectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //information about the initial audio clip(which I have edited in audacity)
         //monster bite audio by LucasDuff
         //licensed under Creative Commons 0 License
         //https://freesound.org/people/LucasDuff/sounds/467701/
@@ -60,9 +68,9 @@ class CookieSelectFragment : Fragment() {
 
         cookieShow(randomInt)
         setButtons()
-
-        val preferences = this.activity?.getSharedPreferences("UserPreferences", AppCompatActivity.MODE_PRIVATE)
-        val audio:Boolean = preferences?.getBoolean("audio", true)!!
+        //this.activity?.getSharedPreferences("UserPreferences", AppCompatActivity.MODE_PRIVATE)!!
+        preferences = requireActivity().getSharedPreferences("UserPreferences", AppCompatActivity.MODE_PRIVATE)
+        audio = preferences.getBoolean("audio", true)
         //button listeners
         binding.cookieButton.setOnClickListener {
             cookiePortion()
