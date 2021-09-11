@@ -25,7 +25,7 @@ Cookie lovers and people on a diet looking to chance/track their cookie consumpt
 - Thought this was a unique app idea with some utility that I could fully implement as someone new to android development
 - Wanted the learning experience of completing native mobile app development from an empty project to the marketplace
 
-## Style features
+## Style Features
 - Faded cookie background for the loading screen
 - Animations between each fragment or activity
 - Visually appealing dark mode which retains a similar aesthetic to the normal color scheme
