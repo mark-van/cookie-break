@@ -1,6 +1,6 @@
 # Cookie Break
 Simple android app for choosing how much of a cookie to eat on your cookie break. Stores eaten-cookies in SQLite local database and delivers a high-quality user experience <br>
-https://play.google.com/store/apps/dev?id=6272061391448889955
+[View on Google Play](https://play.google.com/store/apps/dev?id=6272061391448889955)
 
 ## User Stories
 - As a user, I want to be able to generate random cookie portions
